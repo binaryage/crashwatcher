@@ -4,9 +4,9 @@
 #import "ResizabilityExtensions.h"
 
 #ifdef _DEBUG
-#define DLOG NSLog
+#define DLOG(...) NSLog(__VA_ARGS__)
 #else
-#define DLOG 
+#define DLOG(...)
 #endif
 
 static NSString* gTargetApp = @"UnknownApp"; // will be set to TotalTerminal, TotalFinder, etc.
@@ -197,7 +197,7 @@ static NSString* gTargetApp = @"UnknownApp"; // will be set to TotalTerminal, To
     [task waitUntilExit];
     [task release];
 
-    return string;
+    return [string autorelease];
 }
 
 // http://vgable.com/blog/2008/03/05/calling-the-command-line-from-cocoa/
@@ -217,8 +217,7 @@ static NSString* gTargetApp = @"UnknownApp"; // will be set to TotalTerminal, To
     pipe = [NSPipe pipe];
     [task setStandardOutput:pipe];
 
-    NSFileHandle* file;
-    file = [pipe fileHandleForReading];
+    [pipe fileHandleForReading];
 
     [task launch];
     [task waitUntilExit];
@@ -240,12 +239,13 @@ static NSString* gTargetApp = @"UnknownApp"; // will be set to TotalTerminal, To
     NSDictionary* dict = [[NSDictionary alloc] initWithContentsOfFile:[NSString stringWithFormat:@"%@/../../Info.plist", bundlePath]];
     if (!dict) return @"???";
     id o = [dict objectForKey:@"CFBundleVersion"];
+    [dict release];
     if (!o) return @"?";
     return o;
 }
 
 -(void) report:(NSString*)lastCrash {
-    NSString* gistUrl = @"unable to find last crash :-(";
+    NSString* gistUrl = @"";
     NSString* extraInfo = @"";
 
     if (lastCrash) {
@@ -259,6 +259,20 @@ static NSString* gTargetApp = @"UnknownApp"; // will be set to TotalTerminal, To
             }
         }
     }
+    
+    if (!gistUrl || [gistUrl isEqualToString:@""]) {
+        NSAlert* alert = [NSAlert new];
+        [alert setMessageText: @"Unable to upload crash report to gist.github.com"];
+        if (!lastCrash) {
+            [alert setInformativeText: [NSString stringWithFormat:@"Too bad. I was unable to locate the crash report in your ~/Logs/CrashReporter."]];
+        } else {
+            [alert setInformativeText: [NSString stringWithFormat:@"I was able to locate the crash report, but upload to gist.github.com failed for some reason.\n\nIf urgent, you may send it to me manually:\n%@", lastCrash]];
+        }
+        [alert addButtonWithTitle:@"OK"];
+        [alert runModal];
+        [alert release];
+        return;
+    }
 
     NSString* version = [self readTargetAppVersion];
     NSString* subjectString = [NSString stringWithFormat:@"%@ %@ crash %@", gTargetApp, version, extraInfo];
@@ -268,14 +282,12 @@ static NSString* gTargetApp = @"UnknownApp"; // will be set to TotalTerminal, To
          @"Hi Antonin,\n\nMy %@ just crashed!\n\nThe crash report is available here:\n%@\n\n>\n> You may help me fix the problem by describing what happened before the crash.\n> I appreciate your help and I read these crash reports, but don't expect my direct answer.\n> For further discussion please open a topic at\n> http://getsatisfaction.com/binaryage.\n>\n> Thank you, Antonin",
          gTargetApp,
          gistUrl];
-    [gistUrl release];
 
-    BOOL result = NO;
     NSString* mailto = [NSString stringWithFormat:@"mailto:%@?SUBJECT=%@&BODY=%@", email, subjectString, emailBody];
     NSString* encodedURLString = [mailto stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     if (encodedURLString) {
-        result = [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:encodedURLString]];
-
+        [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:encodedURLString]];
+        [NSThread sleepForTimeInterval:1.0];
         NSArray* apps = [NSRunningApplication runningApplicationsWithBundleIdentifier:@"com.apple.mail"];
         if ([apps count] > 0) {
             DLOG(@"activating ... %@", apps);
@@ -356,7 +368,7 @@ static NSString* lockPath() {
 
 static bool acquireLock() {
     const char* path = [lockPath() fileSystemRepresentation];
-    lock = open(path, O_CREAT|O_RDWR);
+    lock = open(path, O_CREAT|O_RDWR, S_IRWXU);
     if (flock(lock, LOCK_EX|LOCK_NB) != 0) {
         NSLog(@"Unable to obtain lock '%s' - exiting to prevent multiple CrashWatcher instances", path);
         close(lock);
@@ -422,7 +434,9 @@ int main(int argc, const char* argv[]) {
             kFSEventStreamEventIdSinceNow,
             latency,
             kFSEventStreamCreateFlagNone
-            );
+    );
+    
+    CFRelease(pathsToWatch);
 
     FSEventStreamScheduleWithRunLoop(stream, CFRunLoopGetCurrent(), kCFRunLoopDefaultMode);
     FSEventStreamStart(stream);

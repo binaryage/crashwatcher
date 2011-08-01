@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		D601A63A139EDD580012C0C5 /* ResizabilityExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = D601A639139EDD580012C0C5 /* ResizabilityExtensions.m */; };
 		D65923AB139E2AE600E4A9D3 /* CrashWatcher.xib in Resources */ = {isa = PBXBuildFile; fileRef = D65923AA139E2AE600E4A9D3 /* CrashWatcher.xib */; };
-		D6719F7D13A2556E002FE41C /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6719F7C13A2556E002FE41C /* CoreServices.framework */; };
 		D6719F8113A2F5B3002FE41C /* related-crash-report.rb in Resources */ = {isa = PBXBuildFile; fileRef = D6719F8013A2F5B3002FE41C /* related-crash-report.rb */; };
 		D6774F9213A313C900CA6F7A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D6774F8E13A313C900CA6F7A /* Localizable.strings */; };
 		D6BDB63B139E1B6F00501FAA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6BDB63A139E1B6F00501FAA /* Cocoa.framework */; };
@@ -50,7 +49,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D6719F7D13A2556E002FE41C /* CoreServices.framework in Frameworks */,
 				D6BDB63B139E1B6F00501FAA /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -1,31 +1,10 @@
-#import <pwd.h>
-#import <sys/stat.h>
-#import <unistd.h>
-#include <signal.h>
-
-#import <Foundation/Foundation.h>
-#import <Foundation/NSRunLoop.h>
-#import <Foundation/NSTimer.h>
-
-#import <Cocoa/Cocoa.h>
-#import <SystemConfiguration/SystemConfiguration.h>
-#include <CoreServices/CoreServices.h>
-
 #import "main.h"
 #import "GTM/GTMLogger.h"
 
-#import "FRCrashLogFinder.h"
+#import "CrashLogFinder.h"
 #import "ResizabilityExtensions.h"
 
-#import <Message/NSMailDelivery.h>
-#import <AddressBook/AddressBook.h>
-
-#define CONFIRM_TIMEOUT "ConfirmTimeout"
-
-#define kApplePrefsSyncExcludeAllKey \
-    @"com.apple.PreferenceSync.ExcludeAllSyncKeys"
-
-#pragma mark -
+static NSString* gTargetApp = @"UnknownApp"; // will be set to TotalTerminal, TotalFinder, etc.
 
 @implementation Reporter
 // =============================================================================
@@ -39,8 +18,8 @@
     // will obey the com.apple.PreferenceSync.ExcludeAllSyncKeys in our
     // Info.plist. To make sure, also set the key directly if needed.
     NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
-    if (![ud boolForKey:kApplePrefsSyncExcludeAllKey]) {
-        [ud setBool:YES forKey:kApplePrefsSyncExcludeAllKey];
+    if (![ud boolForKey:@"com.apple.PreferenceSync.ExcludeAllSyncKeys"]) {
+        [ud setBool:YES forKey:@"com.apple.PreferenceSync.ExcludeAllSyncKeys"];
     }
 
     return self;
@@ -181,7 +160,7 @@
 #pragma mark -
 
 -(NSTimeInterval) messageTimeout {
-    NSTimeInterval timeout = [[parameters_ objectForKey:@CONFIRM_TIMEOUT] floatValue];
+    NSTimeInterval timeout = [[parameters_ objectForKey:@"ConfirmTimeout"] floatValue];
 
     return timeout;
 }
@@ -245,12 +224,18 @@
     return status;
 }
 
--(NSString*) readTotalFinderVersion {
-    NSDictionary* dict = [[NSDictionary alloc] initWithContentsOfFile:@"/Applications/TotalFinder.app/Contents/Resources/TotalFinder.bundle/Contents/Info.plist"];
-
+-(NSString*) readTargetAppVersion {
+    // CrashWatcher bundle should be located in Resources folder of the target app
+    //   /Library/ScriptingAdditions/TotalTerminal.osax/Contents/Resources/TotalTerminal.bundle/Contents/Resources/TotalTerminalCrashWatcher.app
+    // so going for 
+    //   /Library/ScriptingAdditions/TotalTerminal.osax/Contents/Resources/TotalTerminal.bundle/Contents/Info.plist
+    // should be safe
+    
+    NSString* bundlePath = [[NSBundle bundleForClass:[self class]] bundlePath];
+    NSDictionary* dict = [[NSDictionary alloc] initWithContentsOfFile:[NSString stringWithFormat:@"%@/../../Info.plist", bundlePath]];
     if (!dict) return @"???";
     id o = [dict objectForKey:@"CFBundleVersion"];
-    if (!o) return @"???";
+    if (!o) return @"?";
     return o;
 }
 
@@ -270,12 +255,13 @@
         }
     }
 
-    NSString* version = [self readTotalFinderVersion];
-    NSString* subjectString = [NSString stringWithFormat:@"TotalFinder %@ crash %@", version, extraInfo];
+    NSString* version = [self readTargetAppVersion];
+    NSString* subjectString = [NSString stringWithFormat:@"%@ %@ crash %@", gTargetApp, version, extraInfo];
     NSString* email = @"crash-reports@binaryage.com";
     NSString* emailBody =
         [NSString stringWithFormat:
-         @"Hi Antonin,\n\nMy TotalFinder just crashed!\n\nThe crash report is available here:\n%@\n\n>\n> You may help me fix the problem by describing what happened before the crash.\n> I appreciate your help and I read these crash reports, but don't expect my direct answer.\n> For further discussion please open a topic at\n> http://getsatisfaction.com/binaryage.\n>\n> Thank you, Antonin",
+         @"Hi Antonin,\n\nMy %@ just crashed!\n\nThe crash report is available here:\n%@\n\n>\n> You may help me fix the problem by describing what happened before the crash.\n> I appreciate your help and I read these crash reports, but don't expect my direct answer.\n> For further discussion please open a topic at\n> http://getsatisfaction.com/binaryage.\n>\n> Thank you, Antonin",
+         gTargetApp,
          gistUrl];
     [gistUrl release];
 
@@ -313,17 +299,17 @@ void mycallback(
 
     dialogInProgress = true;
 
-    NSArray* crashFiles = [FRCrashLogFinder findCrashLogsSince:[[NSDate date] addTimeInterval:-10]]; // 10 seconds ago
+    NSArray* crashFiles = [CrashLogFinder findCrashLogsSince:[[NSDate date] addTimeInterval:-10]]; // 10 seconds ago
     NSString* lastCrash = NULL;
     if ([crashFiles count] > 0) {
         for (NSString* crash in crashFiles) {
             int status = [reporter askShellCommand:@"related-crash-report" withCrashFile:crash];
             if (status == 1) {
-                NSLog(@"'%@' crash report was related to TotalFinder -> open Crash Reporting Dialog", crash);
+                NSLog(@"'%@' crash report was related to the target app -> open Crash Reporting Dialog", crash);
                 lastCrash = [crashFiles objectAtIndex:[crashFiles count] - 1];
                 break;
             } else {
-                NSLog(@"'%@' crash report was not related to TotalFinder", crash);
+                NSLog(@"'%@' crash report was not related to the target app", crash);
             }
         }
     }
@@ -355,14 +341,19 @@ void handle_SIGUSR1(int signum) {
 static int lock = 0;
 
 static NSString* lockPath() {
-    return [@"~/Library/Application Support/.TotalFinderCrashWatcher.lock" stringByStandardizingPath];
+    NSString* cachedLockPath = nil;
+    
+    if (!cachedLockPath) {
+        cachedLockPath = [[NSString stringWithFormat:@"~/Library/Application Support/.%@CrashWatcher.lock", gTargetApp] stringByStandardizingPath];
+    }
+    return cachedLockPath;
 }
 
 static bool acquireLock() {
     const char* path = [lockPath() fileSystemRepresentation];
     lock = open(path, O_CREAT|O_RDWR);
     if (flock(lock, LOCK_EX|LOCK_NB) != 0) {
-        NSLog(@"Unable to obtain lock '%s' - exiting to prevent multiple TotalFinderCrashWatcher instances", path);
+        NSLog(@"Unable to obtain lock '%s' - exiting to prevent multiple CrashWatcher instances", path);
         close(lock);
         return false;
     }
@@ -376,10 +367,20 @@ static void releaseLock() {
     unlink([lockPath() fileSystemRepresentation]);
 }
 
+static void initTargetApp() {
+    gTargetApp = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"TargetApp"];
+    if (!gTargetApp || ![gTargetApp isKindOfClass:[NSString class]]) {
+        NSLog(@"TargetApp key is missing in Info.plist");
+        gTargetApp = @"UnknownApp";
+    }
+}
+
 // =============================================================================
 int main(int argc, const char* argv[]) {
     NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
 
+    initTargetApp();
+    
     // prevent multiple instances
     if (!acquireLock()) {
         [pool release];
@@ -398,18 +399,17 @@ int main(int argc, const char* argv[]) {
     GTMLoggerDebug(@"Reporter Launched, argc=%d", argc);
 
     reporter = [[Reporter alloc] init];
-
+    
     // gather the configuration data
     if (![reporter readConfigurationData]) {
         GTMLoggerDebug(@"reporter readConfigurationData failed");
         [reporter release];
-        releaseLock();
         [pool release];
         exit(10);
     }
-
+    
     NSString* path = [@"~/Library/Logs/DiagnosticReports" stringByStandardizingPath];
-    NSLog(@"Watching '%@'", path);
+    NSLog(@"Watching '%@' for recent crash reports with prefix '%@'", path, [CrashLogFinder crashLogPrefix]);
     CFArrayRef pathsToWatch = CFArrayCreate(NULL, (const void**)&path, 1, NULL);
     void* callbackInfo = NULL;
     CFAbsoluteTime latency = 1.0;
@@ -418,9 +418,9 @@ int main(int argc, const char* argv[]) {
             &mycallback,
             callbackInfo,
             pathsToWatch,
-            kFSEventStreamEventIdSinceNow,                      /* Or a previous event ID */
+            kFSEventStreamEventIdSinceNow,
             latency,
-            kFSEventStreamCreateFlagNone                      /* Flags explained in reference */
+            kFSEventStreamCreateFlagNone
             );
 
     FSEventStreamScheduleWithRunLoop(stream, CFRunLoopGetCurrent(), kCFRunLoopDefaultMode);

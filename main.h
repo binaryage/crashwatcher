@@ -51,6 +51,7 @@
 
     // Text field bindings, for user input.
     NSString* countdownMessage_;           // Message indicating time left for input.
+    NSString* targetApp_;                  // TotalTerminal or TotalFinder
     @private
     NSDictionary* parameters_;             // Key value pairs of data
     NSTimeInterval remainingDialogTime_;   // Keeps track of how long we have until we cancel the dialog

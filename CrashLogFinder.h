@@ -16,11 +16,10 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface FRApplication : NSObject
+@interface CrashLogFinder : NSObject
 
-+(NSString*)applicationVersion;
-+(NSString*)applicationName;
-+(NSString*)applicationIdentifier;
-+(NSString*)feedbackURL;
++(NSString*) crashLogPrefix;
++(BOOL) file:(NSString*)path isNewerThan:(NSDate*)date;
++(NSArray*)findCrashLogsSince:(NSDate*)date;
 
 @end

@@ -4,12 +4,14 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
+	<key>CFBundleDocumentTypes</key>
+	<array/>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIconFile</key>
-	<string>CrashDialog</string>
+	<string>CrashWatcher</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.binaryage.totalfinder.crashwatcher</string>
+	<string>com.binaryage.crashwatcher</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -17,13 +19,17 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>##VERSION##</string>
 	<key>CFBundleSignature</key>
-	<string>????</string>
+	<string>BAGE</string>
+	<key>CFBundleURLTypes</key>
+	<array/>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>##VERSION##</string>
 	<key>ConfirmTimeout</key>
 	<integer>180</integer>
+	<key>CrashLogPrefix</key>
+	<string>XXX</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.utilities</string>
 	<key>LSMinimumSystemVersion</key>
@@ -34,5 +40,13 @@
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+	<key>NSServices</key>
+	<array/>
+	<key>TargetApp</key>
+	<string>TotalXXX</string>
+	<key>UTExportedTypeDeclarations</key>
+	<array/>
+	<key>UTImportedTypeDeclarations</key>
+	<array/>
 </dict>
 </plist>

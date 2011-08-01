@@ -14,10 +14,21 @@
  * limitations under the License.
  */
 
-#import "FRCrashLogFinder.h"
-#import "FRApplication.h"
+#import "CrashLogFinder.h"
 
-@implementation FRCrashLogFinder
+@implementation CrashLogFinder
+
++(NSString*) crashLogPrefix {
+    static NSString* cachedPrefix = nil;
+    
+    cachedPrefix = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CrashLogPrefix"];
+    if (!cachedPrefix || ![cachedPrefix isKindOfClass:[NSString class]]) {
+        NSLog(@"CrashLogPrefix key is missing in Info.plist");
+        cachedPrefix = @"XXX";
+    }    
+    
+    return cachedPrefix;
+}
 
 +(BOOL) file:(NSString*)path isNewerThan:(NSDate*)date {
     NSFileManager* fileManager = [NSFileManager defaultManager];
@@ -55,49 +66,24 @@
     while (i--) {
         NSString* libraryDirectory = [libraryDirectories objectAtIndex:i];
 
-        /*  Leopard */
         NSDirectoryEnumerator* enumerator;
         NSString* file;
 
         NSString* log2 = @"Logs/CrashReporter/";
         log2 = [[libraryDirectory stringByAppendingPathComponent:log2] stringByExpandingTildeInPath];
 
-        // NSLog(@"Searching for crash files at %@", log2);
-
         if ([fileManager fileExistsAtPath:log2]) {
             enumerator = [fileManager enumeratorAtPath:log2];
             while ((file = [enumerator nextObject])) {
-                // NSLog(@"Checking crash file %@", file);
-
-                if ([file hasSuffix:@".crash"] && [file hasPrefix:[FRApplication applicationName]]) {
+                if ([file hasSuffix:@".crash"] && [file hasPrefix:[self crashLogPrefix]]) {
                     file = [[log2 stringByAppendingPathComponent:file] stringByExpandingTildeInPath];
 
                     if ([self file:file isNewerThan:date]) {
-                        // NSLog(@"Found crash file %@", file);
-
                         [files addObject:file];
                     }
                 }
             }
         }
-
-// NSString* log3 = [NSString stringWithFormat:@"Logs/HangReporter/%@/", [FRApplication applicationName]];
-// log3 = [[libraryDirectory stringByAppendingPathComponent:log3] stringByExpandingTildeInPath];
-//
-// // NSLog(@"Searching for hang files at %@", log3);
-//
-// if ([fileManager fileExistsAtPath:log3]) {
-// enumerator = [fileManager enumeratorAtPath:log3];
-// while ((file = [enumerator nextObject])) {
-// if ([file hasSuffix:@".hang"]) {
-// file = [[libraryDirectory stringByAppendingPathComponent:file] stringByExpandingTildeInPath];
-//
-// if ([self file:file isNewerThan:date]) {
-// [files addObject:file];
-// }
-// }
-// }
-// }
     }
 
     return files;

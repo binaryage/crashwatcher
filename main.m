@@ -1,8 +1,13 @@
 #import "main.h"
-#import "GTM/GTMLogger.h"
 
 #import "CrashLogFinder.h"
 #import "ResizabilityExtensions.h"
+
+#ifdef _DEBUG
+#define DLOG NSLog
+#else
+#define DLOG 
+#endif
 
 static NSString* gTargetApp = @"UnknownApp"; // will be set to TotalTerminal, TotalFinder, etc.
 
@@ -273,7 +278,7 @@ static NSString* gTargetApp = @"UnknownApp"; // will be set to TotalTerminal, To
 
         NSArray* apps = [NSRunningApplication runningApplicationsWithBundleIdentifier:@"com.apple.mail"];
         if ([apps count] > 0) {
-            GTMLoggerDebug(@"activating ... %@", apps);
+            DLOG(@"activating ... %@", apps);
             [(NSRunningApplication*)[apps objectAtIndex:0] activateWithOptions:NSApplicationActivateAllWindows];
         }
     }
@@ -291,9 +296,9 @@ void mycallback(
         void* eventPaths,
         const FSEventStreamEventFlags eventFlags[],
         const FSEventStreamEventId eventIds[]) {
-    GTMLoggerDebug(@"Reporter awaken");
+    DLOG(@"Reporter awaken");
     if (dialogInProgress) {
-        GTMLoggerDebug(@"Dialog still open - ignoring");
+        DLOG(@"Dialog still open - ignoring");
         return;
     }
 
@@ -317,11 +322,11 @@ void mycallback(
     if (lastCrash) {
         BOOL okayToSend = [reporter askUserPermissionToSend];
         if (okayToSend) {
-            GTMLoggerDebug(@"Show Report Dialog");
+            DLOG(@"Show Report Dialog");
             [reporter report:lastCrash];
-            GTMLoggerDebug(@"Report Sent!");
+            DLOG(@"Report Sent!");
         } else {
-            GTMLoggerDebug(@"Not sending crash report okayToSend=%d", okayToSend);
+            DLOG(@"Not sending crash report okayToSend=%d", okayToSend);
         }
     }
 
@@ -392,17 +397,13 @@ int main(int argc, const char* argv[]) {
     signal(SIGUSR2, SIG_IGN);
     signal(SIGINT, handle_SIGINT);
 
-#if DEBUG
-    // Log to stderr in debug builds.
-    [GTMLogger setSharedLogger:[GTMLogger standardLoggerWithStderr]];
-#endif
-    GTMLoggerDebug(@"Reporter Launched, argc=%d", argc);
+    DLOG(@"Reporter Launched, argc=%d", argc);
 
     reporter = [[Reporter alloc] init];
     
     // gather the configuration data
     if (![reporter readConfigurationData]) {
-        GTMLoggerDebug(@"reporter readConfigurationData failed");
+        DLOG(@"reporter readConfigurationData failed");
         [reporter release];
         [pool release];
         exit(10);
@@ -426,7 +427,7 @@ int main(int argc, const char* argv[]) {
     FSEventStreamScheduleWithRunLoop(stream, CFRunLoopGetCurrent(), kCFRunLoopDefaultMode);
     FSEventStreamStart(stream);
 
-    GTMLoggerDebug(@"looping...");
+    DLOG(@"looping...");
     CFRunLoopRun();
     if (caughtSIGINT) {
         NSLog(@"caught SIGINT - exiting...");

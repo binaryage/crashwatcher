@@ -34,10 +34,6 @@
 
 #include <Foundation/Foundation.h>
 
-#import "GTMDefines.h"
-
-#define kClientIdPreferenceKey @ "clientid"
-
 @interface Reporter : NSObject {
     @public
     IBOutlet NSWindow* alertWindow_;      // The alert window

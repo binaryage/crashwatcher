@@ -15,7 +15,6 @@
 		D6BDB63B139E1B6F00501FAA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6BDB63A139E1B6F00501FAA /* Cocoa.framework */; };
 		D6BDB665139E1C7C00501FAA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D6BDB65F139E1C7C00501FAA /* main.m */; };
 		D6BDB667139E1C7C00501FAA /* CrashLogFinder.m in Sources */ = {isa = PBXBuildFile; fileRef = D6BDB664139E1C7C00501FAA /* CrashLogFinder.m */; };
-		D6BDB66D139E1D8400501FAA /* GTMLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = D6BDB66C139E1D8400501FAA /* GTMLogger.m */; };
 		D6BDB6B1139E1E7100501FAA /* CrashWatcher.icns in Resources */ = {isa = PBXBuildFile; fileRef = D6BDB670139E1E7100501FAA /* CrashWatcher.icns */; };
 		D6BDB6BA139E1E7100501FAA /* extract-crash-info.rb in Resources */ = {isa = PBXBuildFile; fileRef = D6BDB685139E1E7100501FAA /* extract-crash-info.rb */; };
 		D6BDB6CC139E1E7100501FAA /* upload-gist.rb in Resources */ = {isa = PBXBuildFile; fileRef = D6BDB6AF139E1E7100501FAA /* upload-gist.rb */; };
@@ -41,10 +40,6 @@
 		D6BDB65F139E1C7C00501FAA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D6BDB663139E1C7C00501FAA /* CrashLogFinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CrashLogFinder.h; sourceTree = "<group>"; };
 		D6BDB664139E1C7C00501FAA /* CrashLogFinder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CrashLogFinder.m; sourceTree = "<group>"; };
-		D6BDB669139E1D8400501FAA /* GTMDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTMDefines.h; path = GTM/GTMDefines.h; sourceTree = "<group>"; };
-		D6BDB66A139E1D8400501FAA /* GTMGarbageCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTMGarbageCollection.h; path = GTM/GTMGarbageCollection.h; sourceTree = "<group>"; };
-		D6BDB66B139E1D8400501FAA /* GTMLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTMLogger.h; path = GTM/GTMLogger.h; sourceTree = "<group>"; };
-		D6BDB66C139E1D8400501FAA /* GTMLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTMLogger.m; path = GTM/GTMLogger.m; sourceTree = "<group>"; };
 		D6BDB670139E1E7100501FAA /* CrashWatcher.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = CrashWatcher.icns; path = "../crashwatcher-resources/CrashWatcher.icns"; sourceTree = "<group>"; };
 		D6BDB685139E1E7100501FAA /* extract-crash-info.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = "extract-crash-info.rb"; path = "../crashwatcher-resources/extract-crash-info.rb"; sourceTree = "<group>"; };
 		D6BDB6AF139E1E7100501FAA /* upload-gist.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = "upload-gist.rb"; path = "../crashwatcher-resources/upload-gist.rb"; sourceTree = "<group>"; };
@@ -107,7 +102,6 @@
 		D6BDB65D139E1C6900501FAA /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				D6BDB668139E1D5800501FAA /* GTM */,
 				D6BDB65E139E1C7C00501FAA /* main.h */,
 				D6BDB65F139E1C7C00501FAA /* main.m */,
 				D6BDB663139E1C7C00501FAA /* CrashLogFinder.h */,
@@ -116,17 +110,6 @@
 				D601A639139EDD580012C0C5 /* ResizabilityExtensions.m */,
 			);
 			name = Source;
-			sourceTree = "<group>";
-		};
-		D6BDB668139E1D5800501FAA /* GTM */ = {
-			isa = PBXGroup;
-			children = (
-				D6BDB669139E1D8400501FAA /* GTMDefines.h */,
-				D6BDB66A139E1D8400501FAA /* GTMGarbageCollection.h */,
-				D6BDB66B139E1D8400501FAA /* GTMLogger.h */,
-				D6BDB66C139E1D8400501FAA /* GTMLogger.m */,
-			);
-			name = GTM;
 			sourceTree = "<group>";
 		};
 		D6BDB66E139E1E4200501FAA /* Resources */ = {
@@ -221,7 +204,6 @@
 			files = (
 				D6BDB665139E1C7C00501FAA /* main.m in Sources */,
 				D6BDB667139E1C7C00501FAA /* CrashLogFinder.m in Sources */,
-				D6BDB66D139E1D8400501FAA /* GTMLogger.m in Sources */,
 				D601A63A139EDD580012C0C5 /* ResizabilityExtensions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -263,13 +263,13 @@ static NSString* gTargetApp = @"UnknownApp"; // will be set to TotalTerminal, To
     
     if (!gistUrl || [gistUrl isEqualToString:@""]) {
         NSAlert* alert = [NSAlert new];
-        [alert setMessageText: @"Unable to upload crash report to gist.github.com"];
+        [alert setMessageText: NSLocalizedString(@"failDialogHeader", @"")];
         if (!lastCrash) {
-            [alert setInformativeText: [NSString stringWithFormat:@"Too bad. I was unable to locate the crash report in your ~/Logs/CrashReporter."]];
+            [alert setInformativeText: [NSString stringWithFormat:NSLocalizedString(@"failDialogMsg1", @"")]];
         } else {
-            [alert setInformativeText: [NSString stringWithFormat:@"I was able to locate the crash report, but upload to gist.github.com failed for some reason.\n\nIf urgent, you may send it to me manually:\n%@", lastCrash]];
+            [alert setInformativeText: [NSString stringWithFormat:NSLocalizedString(@"failDialogMsg2", @""), lastCrash]];
         }
-        [alert addButtonWithTitle:@"OK"];
+        [alert addButtonWithTitle:NSLocalizedString(@"failDialogOK", @"")];
         [alert runModal];
         [alert release];
         return;
@@ -280,7 +280,7 @@ static NSString* gTargetApp = @"UnknownApp"; // will be set to TotalTerminal, To
     NSString* email = @"crash-reports@binaryage.com";
     NSString* emailBody =
         [NSString stringWithFormat:
-         @"Hi Antonin,\n\nMy %@ just crashed!\n\nThe crash report is available here:\n%@\n\n>\n> You may help me fix the problem by describing what happened before the crash.\n> I appreciate your help and I read these crash reports, but don't expect my direct answer.\n> For further discussion please open a topic at\n> http://getsatisfaction.com/binaryage.\n>\n> Thank you, Antonin",
+         NSLocalizedString(@"emailTemplate", @""),
          gTargetApp,
          gistUrl];
 

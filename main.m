@@ -363,6 +363,7 @@ static NSString* lockPath() {
     
     if (!cachedLockPath) {
         cachedLockPath = [[NSString stringWithFormat:@"~/Library/Application Support/.%@CrashWatcher.lock", gTargetApp] stringByStandardizingPath];
+        [cachedLockPath retain];
     }
     return cachedLockPath;
 }

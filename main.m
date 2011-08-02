@@ -419,6 +419,7 @@ int main(int argc, const char* argv[]) {
     if (![reporter readConfigurationData]) {
         DLOG(@"reporter readConfigurationData failed");
         [reporter release];
+        releaseLock();
         [pool release];
         exit(10);
     }

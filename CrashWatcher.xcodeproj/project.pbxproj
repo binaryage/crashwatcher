@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		D601A63A139EDD580012C0C5 /* ResizabilityExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = D601A639139EDD580012C0C5 /* ResizabilityExtensions.m */; };
+		D61CB65613E8A835007ECF89 /* related-crash-report.rb in Resources */ = {isa = PBXBuildFile; fileRef = D6719F8013A2F5B3002FE41C /* related-crash-report.rb */; };
+		D61CB65713E8A835007ECF89 /* CrashWatcher.xib in Resources */ = {isa = PBXBuildFile; fileRef = D65923AA139E2AE600E4A9D3 /* CrashWatcher.xib */; };
 		D65923AB139E2AE600E4A9D3 /* CrashWatcher.xib in Resources */ = {isa = PBXBuildFile; fileRef = D65923AA139E2AE600E4A9D3 /* CrashWatcher.xib */; };
 		D6719F8113A2F5B3002FE41C /* related-crash-report.rb in Resources */ = {isa = PBXBuildFile; fileRef = D6719F8013A2F5B3002FE41C /* related-crash-report.rb */; };
 		D6774F9213A313C900CA6F7A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D6774F8E13A313C900CA6F7A /* Localizable.strings */; };
@@ -23,6 +25,8 @@
 /* Begin PBXFileReference section */
 		D601A638139EDD580012C0C5 /* ResizabilityExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResizabilityExtensions.h; sourceTree = "<group>"; };
 		D601A639139EDD580012C0C5 /* ResizabilityExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResizabilityExtensions.m; sourceTree = "<group>"; };
+		D61CB65413E8A835007ECF89 /* German */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = German; path = "../crashwatcher-resources/German.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		D61CB65513E8A835007ECF89 /* zh_TW */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh_TW; path = "../crashwatcher-resources/zh_TW.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		D65923A7139E2A1400E4A9D3 /* CrashWatcher-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "CrashWatcher-Info.plist"; sourceTree = SOURCE_ROOT; };
 		D65923A8139E2A1400E4A9D3 /* CrashWatcher-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CrashWatcher-Prefix.pch"; sourceTree = SOURCE_ROOT; };
 		D65923AA139E2AE600E4A9D3 /* CrashWatcher.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CrashWatcher.xib; path = "../crashwatcher-resources/CrashWatcher.xib"; sourceTree = "<group>"; };
@@ -172,6 +176,7 @@
 				Spanish,
 				German,
 				zh_CN,
+				zh_TW,
 			);
 			mainGroup = D6BDB62B139E1B6F00501FAA;
 			productRefGroup = D6BDB62B139E1B6F00501FAA;
@@ -195,6 +200,8 @@
 				D6719F8113A2F5B3002FE41C /* related-crash-report.rb in Resources */,
 				D6774F9213A313C900CA6F7A /* Localizable.strings in Resources */,
 				D6F1A95C13E8A4AA00A1752A /* related-crash-report.rb in Resources */,
+				D61CB65613E8A835007ECF89 /* related-crash-report.rb in Resources */,
+				D61CB65713E8A835007ECF89 /* CrashWatcher.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -221,6 +228,8 @@
 				D685C59413A3983400A23F94 /* Italian */,
 				D685C59513A3983400A23F94 /* Spanish */,
 				D6F1A95B13E8A4AA00A1752A /* zh_CN */,
+				D61CB65413E8A835007ECF89 /* German */,
+				D61CB65513E8A835007ECF89 /* zh_TW */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

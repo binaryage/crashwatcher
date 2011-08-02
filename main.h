@@ -45,6 +45,7 @@
     IBOutlet NSButton* sendButton_;
     IBOutlet NSButton* cancelButton_;
     IBOutlet NSTextField* countdownLabel_;
+    IBOutlet NSProgressIndicator* progressIndicator_;
 
     // Text field bindings, for user input.
     NSString* countdownMessage_;           // Message indicating time left for input.

@@ -55,8 +55,19 @@ static NSString* gTargetApp = @"UnknownApp"; // will be set to TotalTerminal, To
     [self configureAlertWindow];
 
     buttonPressed = [self runModalWindow:alertWindow_ withTimeout:timeout];
-    [alertWindow_ orderOut:self];
+    if (buttonPressed == NSAlertDefaultReturn) {
+        [cancelButton_ setHidden:YES];
+        [progressIndicator_ setUsesThreadedAnimation:YES];
+        [progressIndicator_ setFrameOrigin:NSOffsetRect([sendButton_ frame], -24, 10).origin];
+        [progressIndicator_ setHidden:NO];
+        [progressIndicator_ startAnimation:self];
+        [alertWindow_ display];
+    }
     return buttonPressed == NSAlertDefaultReturn;
+}
+
+-(void) hideAlertWindow {
+    [alertWindow_ orderOut:self];
 }
 
 -(void) configureAlertWindow {
@@ -341,6 +352,7 @@ void mycallback(
         } else {
             DLOG(@"Not sending crash report okayToSend=%d", okayToSend);
         }
+        [reporter hideAlertWindow];
     }
 
     dialogInProgress = false;

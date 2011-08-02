@@ -67,6 +67,7 @@ static NSString* gTargetApp = @"UnknownApp"; // will be set to TotalTerminal, To
     [dialogTitle_ setStringValue:NSLocalizedString(@"crashDialogHeader", @"")];
     [commentMessage_ setStringValue:NSLocalizedString(@"crashDialogMsg", @"")];
     [dialogNote_ setStringValue:NSLocalizedString(@"crashDialogNote", @"")];
+    [dialogExplanation_ setStringValue:NSLocalizedString(@"crashDialogExplanation", @"")];
 
     // Localize the buttons, and keep the cancel button at the right distance.
     [sendButton_ setTitle:NSLocalizedString(@"sendReportButton", @"")];

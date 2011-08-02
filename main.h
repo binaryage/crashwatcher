@@ -40,6 +40,7 @@
 
     IBOutlet NSTextField* dialogTitle_;
     IBOutlet NSTextField* dialogNote_;
+    IBOutlet NSTextField* dialogExplanation_;
     IBOutlet NSTextField* commentMessage_;
     IBOutlet NSButton* sendButton_;
     IBOutlet NSButton* cancelButton_;

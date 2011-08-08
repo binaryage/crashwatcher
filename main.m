@@ -251,9 +251,10 @@ static NSString* gTargetApp = @"UnknownApp"; // will be set to TotalTerminal, To
     NSDictionary* dict = [[NSDictionary alloc] initWithContentsOfFile:[NSString stringWithFormat:@"%@/../../Info.plist", bundlePath]];
     if (!dict) return @"???";
     id o = [dict objectForKey:@"CFBundleVersion"];
+    [o retain];
     [dict release];
     if (!o) return @"?";
-    return o;
+    return [o autorelease];
 }
 
 -(void) report:(NSString*)lastCrash {
@@ -285,10 +286,9 @@ static NSString* gTargetApp = @"UnknownApp"; // will be set to TotalTerminal, To
         [alert release];
         return;
     }
-
     NSString* version = [self readTargetAppVersion];
-    NSString* subjectString = [NSString stringWithFormat:@"%@ %@ crash %@", gTargetApp, version, extraInfo];
     NSString* email = @"crash-reports@binaryage.com";
+    NSString* subjectString = [NSString stringWithFormat:@"%@ %@ crash %@", gTargetApp, version, extraInfo];
     NSString* emailBody =
         [NSString stringWithFormat:
          NSLocalizedString(@"emailTemplate", @""),

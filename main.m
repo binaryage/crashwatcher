@@ -326,8 +326,16 @@ void mycallback(
         return;
     }
 
-    dialogInProgress = true;
+    // learnt suprising info from chromium sources:
+    // The NSApplication-based run loop only drains the autorelease pool at each
+    // UI event (NSEvent).  The autorelease pool is not drained for each
+    // CFRunLoopSource target that's run.  Use a local pool for any autoreleased
+    // objects if the app is not currently handling a UI event to ensure they're
+    // released promptly even in the absence of UI events.  
+    NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
 
+    dialogInProgress = true;
+    
     NSArray* crashFiles = [CrashLogFinder findCrashLogsSince:[[NSDate date] addTimeInterval:-10]]; // 10 seconds ago
     NSString* lastCrash = NULL;
     if ([crashFiles count] > 0) {
@@ -356,6 +364,8 @@ void mycallback(
     }
 
     dialogInProgress = false;
+
+    [pool drain];
 }
 
 static volatile BOOL caughtSIGINT = NO;
@@ -467,7 +477,7 @@ int main(int argc, const char* argv[]) {
 
     [reporter release];
     releaseLock();
-    [pool release];
+    [pool drain];
 
     return 0;
 }

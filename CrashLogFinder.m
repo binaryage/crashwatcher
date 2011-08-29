@@ -20,13 +20,13 @@
 
 +(NSString*) crashLogPrefix {
     static NSString* cachedPrefix = nil;
-    
+
     cachedPrefix = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CrashLogPrefix"];
     if (!cachedPrefix || ![cachedPrefix isKindOfClass:[NSString class]]) {
         NSLog(@"CrashLogPrefix key is missing in Info.plist");
         cachedPrefix = @"XXX";
-    }    
-    
+    }
+
     return cachedPrefix;
 }
 

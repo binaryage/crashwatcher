@@ -4,9 +4,9 @@
 #import "ResizabilityExtensions.h"
 
 #ifdef _DEBUG
-#define DLOG(...) NSLog(__VA_ARGS__)
+# define DLOG(...) NSLog(__VA_ARGS__)
 #else
-#define DLOG(...)
+# define DLOG(...)
 #endif
 
 static NSString* gTargetApp = @"UnknownApp"; // will be set to TotalTerminal, TotalFinder, etc.
@@ -184,15 +184,15 @@ static NSString* gTargetApp = @"UnknownApp"; // will be set to TotalTerminal, To
 
 -(NSString*) runShellCommand:(NSString*)name withCrashFile:(NSString*)cfile {
     NSTask* task = [[NSTask alloc] init];
-    
+
     NSString* command = [NSString stringWithFormat:@"\"%@\" \"%@\"", [[NSBundle bundleForClass:[self class]] pathForResource:name ofType:@"rb"], cfile];
 
     [task setLaunchPath:@"/bin/bash"];
-    NSArray	*args = [NSArray arrayWithObjects:@"-l",
-    				 @"-c",
-    				 command,
-    				 nil];
-    [task setArguments: args];    
+    NSArray* args = [NSArray arrayWithObjects:@"-l",
+                     @"-c",
+                     command,
+                     nil];
+    [task setArguments:args];
 
     NSPipe* pipe;
     pipe = [NSPipe pipe];
@@ -219,11 +219,11 @@ static NSString* gTargetApp = @"UnknownApp"; // will be set to TotalTerminal, To
     NSString* command = [NSString stringWithFormat:@"\"%@\" \"%@\"", [[NSBundle bundleForClass:[self class]] pathForResource:name ofType:@"rb"], cfile];
 
     [task setLaunchPath:@"/bin/bash"];
-    NSArray	*args = [NSArray arrayWithObjects:@"-l",
-    				 @"-c",
-    				 command,
-    				 nil];
-    [task setArguments: args];    
+    NSArray* args = [NSArray arrayWithObjects:@"-l",
+                     @"-c",
+                     command,
+                     nil];
+    [task setArguments:args];
 
     NSPipe* pipe;
     pipe = [NSPipe pipe];
@@ -242,13 +242,14 @@ static NSString* gTargetApp = @"UnknownApp"; // will be set to TotalTerminal, To
 
 -(NSString*) readTargetAppVersion {
     // CrashWatcher bundle should be located in Resources folder of the target app
-    //   /Library/ScriptingAdditions/TotalTerminal.osax/Contents/Resources/TotalTerminal.bundle/Contents/Resources/TotalTerminalCrashWatcher.app
-    // so going for 
-    //   /Library/ScriptingAdditions/TotalTerminal.osax/Contents/Resources/TotalTerminal.bundle/Contents/Info.plist
+    // /Library/ScriptingAdditions/TotalTerminal.osax/Contents/Resources/TotalTerminal.bundle/Contents/Resources/TotalTerminalCrashWatcher.app
+    // so going for
+    // /Library/ScriptingAdditions/TotalTerminal.osax/Contents/Resources/TotalTerminal.bundle/Contents/Info.plist
     // should be safe
-    
+
     NSString* bundlePath = [[NSBundle bundleForClass:[self class]] bundlePath];
     NSDictionary* dict = [[NSDictionary alloc] initWithContentsOfFile:[NSString stringWithFormat:@"%@/../../Info.plist", bundlePath]];
+
     if (!dict) return @"???";
     id o = [dict objectForKey:@"CFBundleVersion"];
     [o retain];
@@ -272,14 +273,14 @@ static NSString* gTargetApp = @"UnknownApp"; // will be set to TotalTerminal, To
             }
         }
     }
-    
+
     if (!gistUrl || [gistUrl isEqualToString:@""]) {
         NSAlert* alert = [NSAlert new];
-        [alert setMessageText: NSLocalizedString(@"failDialogHeader", @"")];
+        [alert setMessageText:NSLocalizedString(@"failDialogHeader", @"")];
         if (!lastCrash) {
-            [alert setInformativeText: [NSString stringWithFormat:NSLocalizedString(@"failDialogMsg1", @"")]];
+            [alert setInformativeText:[NSString stringWithFormat:NSLocalizedString(@"failDialogMsg1", @"")]];
         } else {
-            [alert setInformativeText: [NSString stringWithFormat:NSLocalizedString(@"failDialogMsg2", @""), lastCrash]];
+            [alert setInformativeText:[NSString stringWithFormat:NSLocalizedString(@"failDialogMsg2", @""), lastCrash]];
         }
         [alert addButtonWithTitle:NSLocalizedString(@"failDialogOK", @"")];
         [alert runModal];
@@ -331,11 +332,11 @@ void mycallback(
     // UI event (NSEvent).  The autorelease pool is not drained for each
     // CFRunLoopSource target that's run.  Use a local pool for any autoreleased
     // objects if the app is not currently handling a UI event to ensure they're
-    // released promptly even in the absence of UI events.  
+    // released promptly even in the absence of UI events.
     NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
 
     dialogInProgress = true;
-    
+
     NSArray* crashFiles = [CrashLogFinder findCrashLogsSince:[[NSDate date] addTimeInterval:-10]]; // 10 seconds ago
     NSString* lastCrash = NULL;
     if ([crashFiles count] > 0) {
@@ -382,7 +383,7 @@ static int lock = 0;
 
 static NSString* lockPath() {
     NSString* cachedLockPath = nil;
-    
+
     if (!cachedLockPath) {
         cachedLockPath = [[NSString stringWithFormat:@"~/Library/Application Support/.%@CrashWatcher.lock", gTargetApp] stringByStandardizingPath];
         [cachedLockPath retain];
@@ -391,9 +392,10 @@ static NSString* lockPath() {
 }
 
 static bool acquireLock() {
-    const char* path = [lockPath() fileSystemRepresentation];
-    lock = open(path, O_CREAT|O_RDWR, S_IRWXU);
-    if (flock(lock, LOCK_EX|LOCK_NB) != 0) {
+    const char* path = [lockPath ()fileSystemRepresentation];
+
+    lock = open(path, O_CREAT | O_RDWR, S_IRWXU);
+    if (flock(lock, LOCK_EX | LOCK_NB) != 0) {
         NSLog(@"Unable to obtain lock '%s' - exiting to prevent multiple CrashWatcher instances", path);
         close(lock);
         return false;
@@ -403,9 +405,9 @@ static bool acquireLock() {
 
 static void releaseLock() {
     if (!lock) return;
-    flock(lock, LOCK_UN|LOCK_NB);
+    flock(lock, LOCK_UN | LOCK_NB);
     close(lock);
-    unlink([lockPath() fileSystemRepresentation]);
+    unlink([lockPath ()fileSystemRepresentation]);
 }
 
 static void initTargetApp() {
@@ -421,13 +423,13 @@ int main(int argc, const char* argv[]) {
     NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
 
     initTargetApp();
-    
+
     // prevent multiple instances
     if (!acquireLock()) {
         [pool release];
         exit(1);
     }
-    
+
     signal(SIGHUP, SIG_IGN);
     signal(SIGUSR1, handle_SIGUSR1);
     signal(SIGUSR2, SIG_IGN);
@@ -436,7 +438,7 @@ int main(int argc, const char* argv[]) {
     DLOG(@"Reporter Launched, argc=%d", argc);
 
     reporter = [[Reporter alloc] init];
-    
+
     // gather the configuration data
     if (![reporter readConfigurationData]) {
         DLOG(@"reporter readConfigurationData failed");
@@ -445,7 +447,7 @@ int main(int argc, const char* argv[]) {
         [pool release];
         exit(10);
     }
-    
+
     NSString* path = [@"~/Library/Logs/DiagnosticReports" stringByStandardizingPath];
     NSLog(@"Watching '%@' for recent crash reports with prefix '%@'", path, [CrashLogFinder crashLogPrefix]);
     CFArrayRef pathsToWatch = CFArrayCreate(NULL, (const void**)&path, 1, NULL);
@@ -459,8 +461,8 @@ int main(int argc, const char* argv[]) {
             kFSEventStreamEventIdSinceNow,
             latency,
             kFSEventStreamCreateFlagNone
-    );
-    
+            );
+
     CFRelease(pathsToWatch);
 
     FSEventStreamScheduleWithRunLoop(stream, CFRunLoopGetCurrent(), kCFRunLoopDefaultMode);

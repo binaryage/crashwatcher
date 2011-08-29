@@ -18,8 +18,8 @@
 
 @interface CrashLogFinder : NSObject
 
-+(NSString*) crashLogPrefix;
-+(BOOL) file:(NSString*)path isNewerThan:(NSDate*)date;
++(NSString*)crashLogPrefix;
++(BOOL)file:(NSString*)path isNewerThan:(NSDate*)date;
 +(NSArray*)findCrashLogsSince:(NSDate*)date;
 
 @end

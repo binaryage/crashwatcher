@@ -251,10 +251,12 @@ static NSString* gTargetApp = @"UnknownApp"; // will be set to TotalTerminal, To
     NSDictionary* dict = [[NSDictionary alloc] initWithContentsOfFile:[NSString stringWithFormat:@"%@/../../Info.plist", bundlePath]];
 
     if (!dict) return @"???";
+
     id o = [dict objectForKey:@"CFBundleVersion"];
     [o retain];
     [dict release];
     if (!o) return @"?";
+
     return [o autorelease];
 }
 
@@ -405,6 +407,7 @@ static bool acquireLock() {
 
 static void releaseLock() {
     if (!lock) return;
+
     flock(lock, LOCK_UN | LOCK_NB);
     close(lock);
     unlink([lockPath ()fileSystemRepresentation]);
@@ -483,4 +486,3 @@ int main(int argc, const char* argv[]) {
 
     return 0;
 }
-

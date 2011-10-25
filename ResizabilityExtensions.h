@@ -32,4 +32,3 @@
 // Returns the change in width.
 -(CGFloat)breakpad_smartSizeToFit;
 @end
-

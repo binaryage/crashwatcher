@@ -384,7 +384,7 @@ void handle_SIGUSR1(int signum) {
 static int lock = 0;
 
 static NSString* lockPath() {
-    NSString* cachedLockPath = nil;
+    static NSString* cachedLockPath = nil;
 
     if (!cachedLockPath) {
         cachedLockPath = [[NSString stringWithFormat:@"~/Library/Application Support/.%@CrashWatcher.lock", gTargetApp] stringByStandardizingPath];

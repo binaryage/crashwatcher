@@ -3,13 +3,14 @@
 #import "CrashLogFinder.h"
 #import "ResizabilityExtensions.h"
 
-#ifdef _DEBUG
+#ifdef DEBUG
 # define DLOG(...) NSLog(__VA_ARGS__)
 #else
 # define DLOG(...)
 #endif
 
 static NSString* gTargetApp = @"UnknownApp"; // will be set to TotalTerminal, TotalFinder, etc.
+static NSString* gWatchedPath = nil; // will be set to ~/Library/Logs/DiagnosticReports
 
 @implementation Reporter
 // =============================================================================
@@ -333,7 +334,7 @@ void mycallback(
 
     dialogInProgress = true;
 
-    NSArray* crashFiles = [CrashLogFinder findCrashLogsSince:[[NSDate date] addTimeInterval:-10]]; // 10 seconds ago
+    NSArray* crashFiles = [CrashLogFinder findCrashLogsIn:gWatchedPath since:[[NSDate date] addTimeInterval:-10]]; // 10 seconds ago
     NSString* lastCrash = NULL;
     if ([crashFiles count] > 0) {
         for (NSString* crash in crashFiles) {
@@ -346,6 +347,8 @@ void mycallback(
                 NSLog(@"'%@' crash report was not related to the target app", crash);
             }
         }
+    } else {
+        DLOG(@"no fresh crash files found...");
     }
 
     if (lastCrash) {
@@ -445,9 +448,9 @@ int main(int argc, const char* argv[]) {
         exit(10);
     }
 
-    NSString* path = [@"~/Library/Logs/DiagnosticReports" stringByStandardizingPath];
-    NSLog(@"Watching '%@' for recent crash reports with prefix '%@'", path, [CrashLogFinder crashLogPrefix]);
-    CFArrayRef pathsToWatch = CFArrayCreate(NULL, (const void**)&path, 1, NULL);
+    gWatchedPath = [[@"~/Library/Logs/DiagnosticReports" stringByStandardizingPath] retain];
+    NSLog(@"Watching '%@' for recent crash reports with prefix '%@'", gWatchedPath, [CrashLogFinder crashLogPrefix]);
+    CFArrayRef pathsToWatch = CFArrayCreate(NULL, (const void**)&gWatchedPath, 1, NULL);
     void* callbackInfo = NULL;
     CFAbsoluteTime latency = 1.0;
 

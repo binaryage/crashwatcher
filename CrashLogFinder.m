@@ -54,33 +54,21 @@
     return YES;
 }
 
-+(NSArray*) findCrashLogsSince:(NSDate*)date {
++(NSArray*)findCrashLogsIn:(NSString*)folder since:(NSDate*)date {
     NSMutableArray* files = [NSMutableArray array];
-
     NSFileManager* fileManager = [NSFileManager defaultManager];
 
-    NSArray* libraryDirectories = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSLocalDomainMask | NSUserDomainMask, FALSE);
+    NSDirectoryEnumerator* enumerator;
+    NSString* file;
 
-    NSUInteger i = [libraryDirectories count];
+    if ([fileManager fileExistsAtPath:folder]) {
+        enumerator = [fileManager enumeratorAtPath:folder];
+        while ((file = [enumerator nextObject])) {
+            if ([file hasSuffix:@".crash"] && [file hasPrefix:[self crashLogPrefix]]) {
+                file = [[folder stringByAppendingPathComponent:file] stringByExpandingTildeInPath];
 
-    while (i--) {
-        NSString* libraryDirectory = [libraryDirectories objectAtIndex:i];
-
-        NSDirectoryEnumerator* enumerator;
-        NSString* file;
-
-        NSString* log2 = @"Logs/CrashReporter/";
-        log2 = [[libraryDirectory stringByAppendingPathComponent:log2] stringByExpandingTildeInPath];
-
-        if ([fileManager fileExistsAtPath:log2]) {
-            enumerator = [fileManager enumeratorAtPath:log2];
-            while ((file = [enumerator nextObject])) {
-                if ([file hasSuffix:@".crash"] && [file hasPrefix:[self crashLogPrefix]]) {
-                    file = [[log2 stringByAppendingPathComponent:file] stringByExpandingTildeInPath];
-
-                    if ([self file:file isNewerThan:date]) {
-                        [files addObject:file];
-                    }
+                if ([self file:file isNewerThan:date]) {
+                    [files addObject:file];
                 }
             }
         }

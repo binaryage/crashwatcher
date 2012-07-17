@@ -20,6 +20,6 @@
 
 +(NSString*)crashLogPrefix;
 +(BOOL)file:(NSString*)path isNewerThan:(NSDate*)date;
-+(NSArray*)findCrashLogsSince:(NSDate*)date;
++(NSArray*)findCrashLogsIn:(NSString*)folder since:(NSDate*)date;
 
 @end

@@ -12,6 +12,7 @@
 		D65923AB139E2AE600E4A9D3 /* CrashWatcher.xib in Resources */ = {isa = PBXBuildFile; fileRef = D65923AA139E2AE600E4A9D3 /* CrashWatcher.xib */; };
 		D666901613E8B16100A9FE74 /* extract-crash-info.rb in Resources */ = {isa = PBXBuildFile; fileRef = D6BDB685139E1E7100501FAA /* extract-crash-info.rb */; };
 		D6774F9213A313C900CA6F7A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D6774F8E13A313C900CA6F7A /* Localizable.strings */; };
+		D693341315B59986003832AA /* json.rb in Resources */ = {isa = PBXBuildFile; fileRef = D693341215B59986003832AA /* json.rb */; };
 		D6BDB63B139E1B6F00501FAA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6BDB63A139E1B6F00501FAA /* Cocoa.framework */; };
 		D6BDB665139E1C7C00501FAA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D6BDB65F139E1C7C00501FAA /* main.m */; };
 		D6BDB667139E1C7C00501FAA /* CrashLogFinder.m in Sources */ = {isa = PBXBuildFile; fileRef = D6BDB664139E1C7C00501FAA /* CrashLogFinder.m */; };
@@ -33,6 +34,7 @@
 		D685C57613A36BE000A23F94 /* CrashWatcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CrashWatcher.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D685C59413A3983400A23F94 /* Italian */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Italian; path = "../crashwatcher-resources/Italian.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		D685C59513A3983400A23F94 /* Spanish */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Spanish; path = "../crashwatcher-resources/Spanish.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		D693341215B59986003832AA /* json.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = json.rb; path = "../crashwatcher-resources/json.rb"; sourceTree = "<group>"; };
 		D69D296013F02F7200C7A5A2 /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = "../crashwatcher-resources/fi.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		D6BDB63A139E1B6F00501FAA /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		D6BDB63D139E1B6F00501FAA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -117,6 +119,7 @@
 		D6BDB66E139E1E4200501FAA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D693341215B59986003832AA /* json.rb */,
 				D6774F8E13A313C900CA6F7A /* Localizable.strings */,
 				D6719F8013A2F5B3002FE41C /* related-crash-report.rb */,
 				D65923AA139E2AE600E4A9D3 /* CrashWatcher.xib */,
@@ -201,6 +204,7 @@
 				D65923AB139E2AE600E4A9D3 /* CrashWatcher.xib in Resources */,
 				D6774F9213A313C900CA6F7A /* Localizable.strings in Resources */,
 				D61CB65613E8A835007ECF89 /* related-crash-report.rb in Resources */,
+				D693341315B59986003832AA /* json.rb in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

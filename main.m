@@ -182,15 +182,12 @@ static NSString* gTargetApp = @"UnknownApp"; // will be set to TotalTerminal, To
     return timeout;
 }
 
--(NSString*) runShellCommand:(NSString*)name withCrashFile:(NSString*)cfile {
+-(NSString*) runRubyCommand:(NSString*)name withCrashFile:(NSString*)cfile {
     NSTask* task = [[NSTask alloc] init];
 
-    NSString* command = [NSString stringWithFormat:@"\"%@\" \"%@\"", [[NSBundle bundleForClass:[self class]] pathForResource:name ofType:@"rb"], cfile];
-
-    [task setLaunchPath:@"/bin/bash"];
-    NSArray* args = [NSArray arrayWithObjects:@"-l",
-                     @"-c",
-                     command,
+    [task setLaunchPath:@"/usr/bin/ruby"];
+    NSArray* args = [NSArray arrayWithObjects:[[NSBundle bundleForClass:[self class]] pathForResource:name ofType:@"rb"],
+                     cfile,
                      nil];
     [task setArguments:args];
 
@@ -213,15 +210,12 @@ static NSString* gTargetApp = @"UnknownApp"; // will be set to TotalTerminal, To
 }
 
 // http://vgable.com/blog/2008/03/05/calling-the-command-line-from-cocoa/
--(int) askShellCommand:(NSString*)name withCrashFile:(NSString*)cfile {
+-(int) askRubyCommand:(NSString*)name withCrashFile:(NSString*)cfile {
     NSTask* task = [[NSTask alloc] init];
 
-    NSString* command = [NSString stringWithFormat:@"\"%@\" \"%@\"", [[NSBundle bundleForClass:[self class]] pathForResource:name ofType:@"rb"], cfile];
-
-    [task setLaunchPath:@"/bin/bash"];
-    NSArray* args = [NSArray arrayWithObjects:@"-l",
-                     @"-c",
-                     command,
+    [task setLaunchPath:@"/usr/bin/ruby"];
+    NSArray* args = [NSArray arrayWithObjects:[[NSBundle bundleForClass:[self class]] pathForResource:name ofType:@"rb"],
+                     cfile,
                      nil];
     [task setArguments:args];
 
@@ -266,10 +260,10 @@ static NSString* gTargetApp = @"UnknownApp"; // will be set to TotalTerminal, To
 
     if (lastCrash) {
         NSLog(@"Uploading crash report to gist.github.com: %@", lastCrash);
-        gistUrl = [self runShellCommand:@"upload-gist" withCrashFile:lastCrash];
+        gistUrl = [self runRubyCommand:@"upload-gist" withCrashFile:lastCrash];
         NSLog(@"  => %@", gistUrl);
         if (gistUrl) {
-            extraInfo = [self runShellCommand:@"extract-crash-info" withCrashFile:lastCrash];
+            extraInfo = [self runRubyCommand:@"extract-crash-info" withCrashFile:lastCrash];
             if (!extraInfo) {
                 extraInfo = @"";
             }
@@ -343,7 +337,7 @@ void mycallback(
     NSString* lastCrash = NULL;
     if ([crashFiles count] > 0) {
         for (NSString* crash in crashFiles) {
-            int status = [reporter askShellCommand:@"related-crash-report" withCrashFile:crash];
+            int status = [reporter askRubyCommand:@"related-crash-report" withCrashFile:crash];
             if (status == 1) {
                 NSLog(@"'%@' crash report was related to the target app -> open Crash Reporting Dialog", crash);
                 lastCrash = [crashFiles objectAtIndex:[crashFiles count] - 1];

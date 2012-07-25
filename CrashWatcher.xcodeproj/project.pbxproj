@@ -25,6 +25,19 @@
 		D601A639139EDD580012C0C5 /* ResizabilityExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResizabilityExtensions.m; sourceTree = "<group>"; };
 		D61CB65413E8A835007ECF89 /* German */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = German; path = "../crashwatcher-resources/German.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		D61CB65513E8A835007ECF89 /* zh_TW */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh_TW; path = "../crashwatcher-resources/zh_TW.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		D63317F415C00F0F00B05623 /* Croatian */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Croatian; path = "../crashwatcher-resources/Croatian.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		D63317F715C00F2000B05623 /* Dutch */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Dutch; path = "../crashwatcher-resources/Dutch.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		D63317F815C00F2000B05623 /* French */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = French; path = "../crashwatcher-resources/French.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		D63317F915C00F2000B05623 /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = "../crashwatcher-resources/hu.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		D63317FD15C00F3100B05623 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = "../crashwatcher-resources/ko.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		D63317FE15C00F3100B05623 /* mn */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mn; path = "../crashwatcher-resources/mn.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		D63317FF15C00F3100B05623 /* no */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = no; path = "../crashwatcher-resources/no.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		D633180015C00F3100B05623 /* Portuguese */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Portuguese; path = "../crashwatcher-resources/Portuguese.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		D633180115C00F3100B05623 /* pt_PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt_PT; path = "../crashwatcher-resources/pt_PT.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		D633180715C00F3E00B05623 /* Romanian */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Romanian; path = "../crashwatcher-resources/Romanian.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		D633180815C00F3F00B05623 /* Russian */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Russian; path = "../crashwatcher-resources/Russian.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		D633180915C00F3F00B05623 /* Turkish */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Turkish; path = "../crashwatcher-resources/Turkish.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		D633180A15C00F3F00B05623 /* Ukrainian */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Ukrainian; path = "../crashwatcher-resources/Ukrainian.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		D65923A7139E2A1400E4A9D3 /* CrashWatcher-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "CrashWatcher-Info.plist"; sourceTree = SOURCE_ROOT; };
 		D65923A8139E2A1400E4A9D3 /* CrashWatcher-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CrashWatcher-Prefix.pch"; sourceTree = SOURCE_ROOT; };
 		D65923AA139E2AE600E4A9D3 /* CrashWatcher.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CrashWatcher.xib; path = "../crashwatcher-resources/CrashWatcher.xib"; sourceTree = "<group>"; };
@@ -182,6 +195,18 @@
 				zh_CN,
 				zh_TW,
 				fi,
+				Croatian,
+				Dutch,
+				French,
+				hu,
+				ko,
+				mn,
+				Portuguese,
+				pt_PT,
+				Romanian,
+				Russian,
+				Turkish,
+				Ukrainian,
 			);
 			mainGroup = D6BDB62B139E1B6F00501FAA;
 			productRefGroup = D6BDB62B139E1B6F00501FAA;
@@ -198,12 +223,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6774F9213A313C900CA6F7A /* Localizable.strings in Resources */,
 				D6BDB6B1139E1E7100501FAA /* CrashWatcher.icns in Resources */,
 				D6BDB6CC139E1E7100501FAA /* upload-gist.rb in Resources */,
 				D666901613E8B16100A9FE74 /* extract-crash-info.rb in Resources */,
-				D65923AB139E2AE600E4A9D3 /* CrashWatcher.xib in Resources */,
-				D6774F9213A313C900CA6F7A /* Localizable.strings in Resources */,
 				D61CB65613E8A835007ECF89 /* related-crash-report.rb in Resources */,
+				D65923AB139E2AE600E4A9D3 /* CrashWatcher.xib in Resources */,
 				D693341315B59986003832AA /* json.rb in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -234,6 +259,19 @@
 				D61CB65413E8A835007ECF89 /* German */,
 				D61CB65513E8A835007ECF89 /* zh_TW */,
 				D69D296013F02F7200C7A5A2 /* fi */,
+				D63317F415C00F0F00B05623 /* Croatian */,
+				D63317F715C00F2000B05623 /* Dutch */,
+				D63317F815C00F2000B05623 /* French */,
+				D63317F915C00F2000B05623 /* hu */,
+				D63317FD15C00F3100B05623 /* ko */,
+				D63317FE15C00F3100B05623 /* mn */,
+				D63317FF15C00F3100B05623 /* no */,
+				D633180015C00F3100B05623 /* Portuguese */,
+				D633180115C00F3100B05623 /* pt_PT */,
+				D633180715C00F3E00B05623 /* Romanian */,
+				D633180815C00F3F00B05623 /* Russian */,
+				D633180915C00F3F00B05623 /* Turkish */,
+				D633180A15C00F3F00B05623 /* Ukrainian */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

@@ -8,11 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		D601A63A139EDD580012C0C5 /* ResizabilityExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = D601A639139EDD580012C0C5 /* ResizabilityExtensions.m */; };
+		D61347A315FBA2000078B8A4 /* json.rb in Resources */ = {isa = PBXBuildFile; fileRef = D693341215B59986003832AA /* json.rb */; };
 		D61CB65613E8A835007ECF89 /* related-crash-report.rb in Resources */ = {isa = PBXBuildFile; fileRef = D6719F8013A2F5B3002FE41C /* related-crash-report.rb */; };
 		D65923AB139E2AE600E4A9D3 /* CrashWatcher.xib in Resources */ = {isa = PBXBuildFile; fileRef = D65923AA139E2AE600E4A9D3 /* CrashWatcher.xib */; };
 		D666901613E8B16100A9FE74 /* extract-crash-info.rb in Resources */ = {isa = PBXBuildFile; fileRef = D6BDB685139E1E7100501FAA /* extract-crash-info.rb */; };
 		D6774F9213A313C900CA6F7A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D6774F8E13A313C900CA6F7A /* Localizable.strings */; };
-		D693341315B59986003832AA /* json.rb in Resources */ = {isa = PBXBuildFile; fileRef = D693341215B59986003832AA /* json.rb */; };
 		D6BDB63B139E1B6F00501FAA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6BDB63A139E1B6F00501FAA /* Cocoa.framework */; };
 		D6BDB665139E1C7C00501FAA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D6BDB65F139E1C7C00501FAA /* main.m */; };
 		D6BDB667139E1C7C00501FAA /* CrashLogFinder.m in Sources */ = {isa = PBXBuildFile; fileRef = D6BDB664139E1C7C00501FAA /* CrashLogFinder.m */; };
@@ -41,6 +41,8 @@
 		D65923A7139E2A1400E4A9D3 /* CrashWatcher-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "CrashWatcher-Info.plist"; sourceTree = SOURCE_ROOT; };
 		D65923A8139E2A1400E4A9D3 /* CrashWatcher-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CrashWatcher-Prefix.pch"; sourceTree = SOURCE_ROOT; };
 		D65923AA139E2AE600E4A9D3 /* CrashWatcher.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CrashWatcher.xib; path = "../crashwatcher-resources/CrashWatcher.xib"; sourceTree = "<group>"; };
+		D66BF26E15FBA06700274E15 /* Vietnamese */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Vietnamese; path = "../crashwatcher-resources/Vietnamese.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		D66BF26F15FBA06700274E15 /* Polish */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Polish; path = "../crashwatcher-resources/Polish.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		D6719F7C13A2556E002FE41C /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
 		D6719F8013A2F5B3002FE41C /* related-crash-report.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = "related-crash-report.rb"; path = "../crashwatcher-resources/related-crash-report.rb"; sourceTree = "<group>"; };
 		D6774F8F13A313C900CA6F7A /* English */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = English; path = "../crashwatcher-resources/English.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -207,6 +209,8 @@
 				Russian,
 				Turkish,
 				Ukrainian,
+				Vietnamese,
+				Polish,
 			);
 			mainGroup = D6BDB62B139E1B6F00501FAA;
 			productRefGroup = D6BDB62B139E1B6F00501FAA;
@@ -223,13 +227,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D61347A315FBA2000078B8A4 /* json.rb in Resources */,
 				D6774F9213A313C900CA6F7A /* Localizable.strings in Resources */,
 				D6BDB6B1139E1E7100501FAA /* CrashWatcher.icns in Resources */,
 				D6BDB6CC139E1E7100501FAA /* upload-gist.rb in Resources */,
 				D666901613E8B16100A9FE74 /* extract-crash-info.rb in Resources */,
 				D61CB65613E8A835007ECF89 /* related-crash-report.rb in Resources */,
 				D65923AB139E2AE600E4A9D3 /* CrashWatcher.xib in Resources */,
-				D693341315B59986003832AA /* json.rb in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,6 +276,8 @@
 				D633180815C00F3F00B05623 /* Russian */,
 				D633180915C00F3F00B05623 /* Turkish */,
 				D633180A15C00F3F00B05623 /* Ukrainian */,
+				D66BF26E15FBA06700274E15 /* Vietnamese */,
+				D66BF26F15FBA06700274E15 /* Polish */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

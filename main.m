@@ -334,7 +334,7 @@ void mycallback(
 
     dialogInProgress = true;
 
-    NSArray* crashFiles = [CrashLogFinder findCrashLogsIn:gWatchedPath since:[[NSDate date] addTimeInterval:-10]]; // 10 seconds ago
+    NSArray* crashFiles = [CrashLogFinder findCrashLogsIn:gWatchedPath since:[[NSDate date] dateByAddingTimeInterval:-10]]; // 10 seconds ago
     NSString* lastCrash = NULL;
     if ([crashFiles count] > 0) {
         for (NSString* crash in crashFiles) {

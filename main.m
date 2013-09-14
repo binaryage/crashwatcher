@@ -9,8 +9,8 @@
 # define DLOG(...)
 #endif
 
+#define WATCHED_PATH "~/Library/Logs/DiagnosticReports"
 static NSString* gTargetApp = @"UnknownApp"; // will be set to TotalTerminal, TotalFinder, etc.
-static NSString* gWatchedPath = nil; // will be set to ~/Library/Logs/DiagnosticReports
 
 @implementation Reporter
 // =============================================================================
@@ -165,12 +165,11 @@ static NSString* gWatchedPath = nil; // will be set to ~/Library/Logs/Diagnostic
 // =============================================================================
 
 -(NSString*) countdownMessage {
-    return [[countdownMessage_ retain] autorelease];
+    return countdownMessage_;
 }
 
 -(void) setCountdownMessage:(NSString*)value {
     if (countdownMessage_ != value) {
-        [countdownMessage_ release];
         countdownMessage_ = [value copy];
     }
 }
@@ -178,7 +177,7 @@ static NSString* gWatchedPath = nil; // will be set to ~/Library/Logs/Diagnostic
 #pragma mark -
 
 -(NSTimeInterval) messageTimeout {
-    NSTimeInterval timeout = [[parameters_ objectForKey:@"ConfirmTimeout"] floatValue];
+    NSTimeInterval timeout = [parameters_[@"ConfirmTimeout"] floatValue];
 
     return timeout;
 }
@@ -187,9 +186,8 @@ static NSString* gWatchedPath = nil; // will be set to ~/Library/Logs/Diagnostic
     NSTask* task = [[NSTask alloc] init];
 
     [task setLaunchPath:@"/usr/bin/ruby"];
-    NSArray* args = [NSArray arrayWithObjects:[[NSBundle bundleForClass:[self class]] pathForResource:name ofType:@"rb"],
-                     cfile,
-                     nil];
+    NSArray* args = @[[[NSBundle bundleForClass:[self class]] pathForResource:name ofType:@"rb"],
+                     cfile];
     [task setArguments:args];
 
     NSPipe* pipe;
@@ -205,9 +203,8 @@ static NSString* gWatchedPath = nil; // will be set to ~/Library/Logs/Diagnostic
     string = [[NSString alloc] initWithData:[file readDataToEndOfFile] encoding:NSUTF8StringEncoding];
 
     [task waitUntilExit];
-    [task release];
 
-    return [string autorelease];
+    return string;
 }
 
 // http://vgable.com/blog/2008/03/05/calling-the-command-line-from-cocoa/
@@ -215,9 +212,8 @@ static NSString* gWatchedPath = nil; // will be set to ~/Library/Logs/Diagnostic
     NSTask* task = [[NSTask alloc] init];
 
     [task setLaunchPath:@"/usr/bin/ruby"];
-    NSArray* args = [NSArray arrayWithObjects:[[NSBundle bundleForClass:[self class]] pathForResource:name ofType:@"rb"],
-                     cfile,
-                     nil];
+    NSArray* args = @[[[NSBundle bundleForClass:[self class]] pathForResource:name ofType:@"rb"],
+                     cfile];
     [task setArguments:args];
 
     NSPipe* pipe;
@@ -230,7 +226,6 @@ static NSString* gWatchedPath = nil; // will be set to ~/Library/Logs/Diagnostic
     [task waitUntilExit];
 
     int status = [task terminationStatus];
-    [task release];
 
     return status;
 }
@@ -247,12 +242,10 @@ static NSString* gWatchedPath = nil; // will be set to ~/Library/Logs/Diagnostic
 
     if (!dict) return @"???";
 
-    id o = [dict objectForKey:@"CFBundleVersion"];
-    [o retain];
-    [dict release];
+    id o = dict[@"CFBundleVersion"];
     if (!o) return @"?";
 
-    return [o autorelease];
+    return o;
 }
 
 -(void) report:(NSString*)lastCrash {
@@ -281,7 +274,6 @@ static NSString* gWatchedPath = nil; // will be set to ~/Library/Logs/Diagnostic
         }
         [alert addButtonWithTitle:NSLocalizedString(@"failDialogOK", @"")];
         [alert runModal];
-        [alert release];
         return;
     }
     NSString* version = [self readTargetAppVersion];
@@ -301,14 +293,13 @@ static NSString* gWatchedPath = nil; // will be set to ~/Library/Logs/Diagnostic
         NSArray* apps = [NSRunningApplication runningApplicationsWithBundleIdentifier:@"com.apple.mail"];
         if ([apps count] > 0) {
             DLOG(@"activating ... %@", apps);
-            [(NSRunningApplication*)[apps objectAtIndex:0] activateWithOptions:NSApplicationActivateAllWindows];
+            [(NSRunningApplication*)apps[0] activateWithOptions:NSApplicationActivateAllWindows];
         }
     }
 }
 
 @end
 
-Reporter * reporter = NULL;
 bool dialogInProgress = false;
 
 void mycallback(
@@ -323,49 +314,47 @@ void mycallback(
         DLOG(@"Dialog still open - ignoring");
         return;
     }
-
-    // learnt suprising info from chromium sources:
-    // The NSApplication-based run loop only drains the autorelease pool at each
-    // UI event (NSEvent).  The autorelease pool is not drained for each
-    // CFRunLoopSource target that's run.  Use a local pool for any autoreleased
-    // objects if the app is not currently handling a UI event to ensure they're
-    // released promptly even in the absence of UI events.
-    NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
-
+  // learnt suprising info from chromium sources:
+  // The NSApplication-based run loop only drains the autorelease pool at each
+  // UI event (NSEvent).  The autorelease pool is not drained for each
+  // CFRunLoopSource target that's run.  Use a local pool for any autoreleased
+  // objects if the app is not currently handling a UI event to ensure they're
+  // released promptly even in the absence of UI events.
+  @autoreleasepool {
     dialogInProgress = true;
-
-    NSArray* crashFiles = [CrashLogFinder findCrashLogsIn:gWatchedPath since:[[NSDate date] dateByAddingTimeInterval:-10]]; // 10 seconds ago
+    Reporter* reporter = (__bridge Reporter*)clientCallBackInfo;
+    
+    NSArray* crashFiles = [CrashLogFinder findCrashLogsIn:[@WATCHED_PATH stringByStandardizingPath] since:[[NSDate date] dateByAddingTimeInterval:-10]]; // 10 seconds ago
     NSString* lastCrash = NULL;
     if ([crashFiles count] > 0) {
-        for (NSString* crash in crashFiles) {
-            int status = [reporter askRubyCommand:@"related-crash-report" withCrashFile:crash];
-            if (status == 1) {
-                NSLog(@"'%@' crash report was related to the target app -> open Crash Reporting Dialog", crash);
-                lastCrash = [crashFiles objectAtIndex:[crashFiles count] - 1];
-                break;
-            } else {
-                NSLog(@"'%@' crash report was not related to the target app", crash);
-            }
-        }
-    } else {
-        DLOG(@"no fresh crash files found...");
-    }
-
-    if (lastCrash) {
-        BOOL okayToSend = [reporter askUserPermissionToSend];
-        if (okayToSend) {
-            DLOG(@"Show Report Dialog");
-            [reporter report:lastCrash];
-            DLOG(@"Report Sent!");
+      for (NSString* crash in crashFiles) {
+        int status = [reporter askRubyCommand:@"related-crash-report" withCrashFile:crash];
+        if (status == 1) {
+          NSLog(@"'%@' crash report was related to the target app -> open Crash Reporting Dialog", crash);
+          lastCrash = crashFiles[[crashFiles count] - 1];
+          break;
         } else {
-            DLOG(@"Not sending crash report okayToSend=%d", okayToSend);
+          NSLog(@"'%@' crash report was not related to the target app", crash);
         }
-        [reporter hideAlertWindow];
+      }
+    } else {
+      DLOG(@"no fresh crash files found...");
     }
-
+    
+    if (lastCrash) {
+      BOOL okayToSend = [reporter askUserPermissionToSend];
+      if (okayToSend) {
+        DLOG(@"Show Report Dialog");
+        [reporter report:lastCrash];
+        DLOG(@"Report Sent!");
+      } else {
+        DLOG(@"Not sending crash report okayToSend=%d", okayToSend);
+      }
+      [reporter hideAlertWindow];
+    }
+    
     dialogInProgress = false;
-
-    [pool drain];
+  }
 }
 
 static volatile BOOL caughtSIGINT = NO;
@@ -385,7 +374,6 @@ static NSString* lockPath() {
 
     if (!cachedLockPath) {
         cachedLockPath = [[NSString stringWithFormat:@"~/Library/Application Support/.%@CrashWatcher.lock", gTargetApp] stringByStandardizingPath];
-        [cachedLockPath retain];
     }
     return cachedLockPath;
 }
@@ -411,7 +399,7 @@ static void releaseLock() {
 }
 
 static void initTargetApp() {
-    gTargetApp = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"TargetApp"];
+    gTargetApp = [[NSBundle mainBundle] infoDictionary][@"TargetApp"];
     if (!gTargetApp || ![gTargetApp isKindOfClass:[NSString class]]) {
         NSLog(@"TargetApp key is missing in Info.plist");
         gTargetApp = @"UnknownApp";
@@ -420,66 +408,60 @@ static void initTargetApp() {
 
 // =============================================================================
 int main(int argc, const char* argv[]) {
-    NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+    @autoreleasepool {
 
-    initTargetApp();
+        initTargetApp();
 
-    // prevent multiple instances
-    if (!acquireLock()) {
-        [pool release];
-        exit(1);
-    }
+        // prevent multiple instances
+        if (!acquireLock()) {
+            exit(1);
+        }
 
-    signal(SIGHUP, SIG_IGN);
-    signal(SIGUSR1, handle_SIGUSR1);
-    signal(SIGUSR2, SIG_IGN);
-    signal(SIGINT, handle_SIGINT);
+        signal(SIGHUP, SIG_IGN);
+        signal(SIGUSR1, handle_SIGUSR1);
+        signal(SIGUSR2, SIG_IGN);
+        signal(SIGINT, handle_SIGINT);
 
-    DLOG(@"Reporter Launched, argc=%d", argc);
+        DLOG(@"Reporter Launched, argc=%d", argc);
 
-    reporter = [[Reporter alloc] init];
+        Reporter *reporter = [[Reporter alloc] init];
 
-    // gather the configuration data
-    if (![reporter readConfigurationData]) {
-        DLOG(@"reporter readConfigurationData failed");
-        [reporter release];
+        // gather the configuration data
+        if (![reporter readConfigurationData]) {
+            DLOG(@"reporter readConfigurationData failed");
+            releaseLock();
+            exit(10);
+        }
+
+        NSString* watchedPath = [@WATCHED_PATH stringByStandardizingPath];
+        NSArray* pathsToWatch = [NSArray arrayWithObject:watchedPath];
+        NSLog(@"Watching '%@' for recent crash reports with prefix '%@'", watchedPath, [CrashLogFinder crashLogPrefix]);
+        void* callbackInfo = (__bridge void *)(reporter);
+        CFAbsoluteTime latency = 1.0;
+
+        FSEventStreamRef stream = FSEventStreamCreate(NULL,
+                &mycallback,
+                callbackInfo,
+                (__bridge CFArrayRef)pathsToWatch,
+                kFSEventStreamEventIdSinceNow,
+                latency,
+                kFSEventStreamCreateFlagNone
+                );
+
+        FSEventStreamScheduleWithRunLoop(stream, CFRunLoopGetCurrent(), kCFRunLoopDefaultMode);
+        FSEventStreamStart(stream);
+
+        DLOG(@"looping...");
+        CFRunLoopRun();
+        if (caughtSIGINT) {
+            NSLog(@"caught SIGINT - exiting...");
+        }
+
+        FSEventStreamStop(stream);
+        FSEventStreamUnscheduleFromRunLoop(stream, CFRunLoopGetCurrent(), kCFRunLoopDefaultMode);
+
         releaseLock();
-        [pool release];
-        exit(10);
     }
-
-    gWatchedPath = [[@"~/Library/Logs/DiagnosticReports" stringByStandardizingPath] retain];
-    NSLog(@"Watching '%@' for recent crash reports with prefix '%@'", gWatchedPath, [CrashLogFinder crashLogPrefix]);
-    CFArrayRef pathsToWatch = CFArrayCreate(NULL, (const void**)&gWatchedPath, 1, NULL);
-    void* callbackInfo = NULL;
-    CFAbsoluteTime latency = 1.0;
-
-    FSEventStreamRef stream = FSEventStreamCreate(NULL,
-            &mycallback,
-            callbackInfo,
-            pathsToWatch,
-            kFSEventStreamEventIdSinceNow,
-            latency,
-            kFSEventStreamCreateFlagNone
-            );
-
-    CFRelease(pathsToWatch);
-
-    FSEventStreamScheduleWithRunLoop(stream, CFRunLoopGetCurrent(), kCFRunLoopDefaultMode);
-    FSEventStreamStart(stream);
-
-    DLOG(@"looping...");
-    CFRunLoopRun();
-    if (caughtSIGINT) {
-        NSLog(@"caught SIGINT - exiting...");
-    }
-
-    FSEventStreamStop(stream);
-    FSEventStreamUnscheduleFromRunLoop(stream, CFRunLoopGetCurrent(), kCFRunLoopDefaultMode);
-
-    [reporter release];
-    releaseLock();
-    [pool drain];
 
     return 0;
 }

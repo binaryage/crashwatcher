@@ -212,10 +212,9 @@ static NSString* gTargetApp = @"UnknownApp"; // will be set to TotalTerminal, To
     NSTask* task = [[NSTask alloc] init];
 
     [task setLaunchPath:@"/usr/bin/ruby"];
-    NSArray* args = @[[[NSBundle bundleForClass:[self class]] pathForResource:name ofType:@"rb"],
-                     cfile];
+    NSArray* args = @[[[NSBundle bundleForClass:[self class]] pathForResource:name ofType:@"rb"], cfile];
     [task setArguments:args];
-
+  
     NSPipe* pipe;
     pipe = [NSPipe pipe];
     [task setStandardOutput:pipe];
@@ -225,9 +224,7 @@ static NSString* gTargetApp = @"UnknownApp"; // will be set to TotalTerminal, To
     [task launch];
     [task waitUntilExit];
 
-    int status = [task terminationStatus];
-
-    return status;
+    return [task terminationStatus];
 }
 
 -(NSString*) readTargetAppVersion {
@@ -424,7 +421,7 @@ int main(int argc, const char* argv[]) {
 
         DLOG(@"Reporter Launched, argc=%d", argc);
 
-        Reporter *reporter = [[Reporter alloc] init];
+        Reporter* reporter = [[Reporter alloc] init];
 
         // gather the configuration data
         if (![reporter readConfigurationData]) {
@@ -436,12 +433,14 @@ int main(int argc, const char* argv[]) {
         NSString* watchedPath = [@WATCHED_PATH stringByStandardizingPath];
         NSArray* pathsToWatch = [NSArray arrayWithObject:watchedPath];
         NSLog(@"Watching '%@' for recent crash reports with prefix '%@'", watchedPath, [CrashLogFinder crashLogPrefix]);
-        void* callbackInfo = (__bridge void *)(reporter);
         CFAbsoluteTime latency = 1.0;
-
+        FSEventStreamContext context;
+        memset(&context, 0, sizeof(context));
+        context.info = (void*)CFBridgingRetain(reporter); // keep reporter alive forever
+      
         FSEventStreamRef stream = FSEventStreamCreate(NULL,
                 &mycallback,
-                callbackInfo,
+                &context,
                 (__bridge CFArrayRef)pathsToWatch,
                 kFSEventStreamEventIdSinceNow,
                 latency,
@@ -452,7 +451,11 @@ int main(int argc, const char* argv[]) {
         FSEventStreamStart(stream);
 
         DLOG(@"looping...");
-        CFRunLoopRun();
+        // note: we need this loop because closing cocoa dialog ends our run loop
+        while(!caughtSIGINT) {
+          CFRunLoopRun();
+        }
+        DLOG(@"finished looping...");
         if (caughtSIGINT) {
             NSLog(@"caught SIGINT - exiting...");
         }

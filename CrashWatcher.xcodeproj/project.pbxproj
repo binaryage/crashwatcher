@@ -10,8 +10,6 @@
 		D601A63A139EDD580012C0C5 /* ResizabilityExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = D601A639139EDD580012C0C5 /* ResizabilityExtensions.m */; };
 		D61347A315FBA2000078B8A4 /* json.rb in Resources */ = {isa = PBXBuildFile; fileRef = D693341215B59986003832AA /* json.rb */; };
 		D61CB65613E8A835007ECF89 /* related-crash-report.rb in Resources */ = {isa = PBXBuildFile; fileRef = D6719F8013A2F5B3002FE41C /* related-crash-report.rb */; };
-		D644210D17FA761100141925 /* CrashWatcher_Debug_CrashWatcher.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = D644210B17FA761100141925 /* CrashWatcher_Debug_CrashWatcher.xcconfig */; };
-		D644210E17FA761100141925 /* CrashWatcher_Release_CrashWatcher.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = D644210C17FA761100141925 /* CrashWatcher_Release_CrashWatcher.xcconfig */; };
 		D65923AB139E2AE600E4A9D3 /* CrashWatcher.xib in Resources */ = {isa = PBXBuildFile; fileRef = D65923AA139E2AE600E4A9D3 /* CrashWatcher.xib */; };
 		D666901613E8B16100A9FE74 /* extract-crash-info.rb in Resources */ = {isa = PBXBuildFile; fileRef = D6BDB685139E1E7100501FAA /* extract-crash-info.rb */; };
 		D6774F9213A313C900CA6F7A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D6774F8E13A313C900CA6F7A /* Localizable.strings */; };
@@ -243,10 +241,8 @@
 			files = (
 				D61347A315FBA2000078B8A4 /* json.rb in Resources */,
 				D6774F9213A313C900CA6F7A /* Localizable.strings in Resources */,
-				D644210D17FA761100141925 /* CrashWatcher_Debug_CrashWatcher.xcconfig in Resources */,
 				D6BDB6B1139E1E7100501FAA /* CrashWatcher.icns in Resources */,
 				D6BDB6CC139E1E7100501FAA /* upload-gist.rb in Resources */,
-				D644210E17FA761100141925 /* CrashWatcher_Release_CrashWatcher.xcconfig in Resources */,
 				D666901613E8B16100A9FE74 /* extract-crash-info.rb in Resources */,
 				D61CB65613E8A835007ECF89 /* related-crash-report.rb in Resources */,
 				D65923AB139E2AE600E4A9D3 /* CrashWatcher.xib in Resources */,

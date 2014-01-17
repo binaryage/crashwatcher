@@ -18,63 +18,63 @@
 
 @implementation CrashLogFinder
 
-+(NSString*) crashLogPrefix {
-    static NSString* cachedPrefix = nil;
++ (NSString*)crashLogPrefix {
+  static NSString* cachedPrefix = nil;
 
-    cachedPrefix = [[NSBundle mainBundle] infoDictionary][@"CrashLogPrefix"];
-    if (!cachedPrefix || ![cachedPrefix isKindOfClass:[NSString class]]) {
-        NSLog(@"CrashLogPrefix key is missing in Info.plist");
-        cachedPrefix = @"XXX";
-    }
+  cachedPrefix = [[NSBundle mainBundle] infoDictionary][@"CrashLogPrefix"];
+  if (!cachedPrefix || ![cachedPrefix isKindOfClass:[NSString class]]) {
+    NSLog(@"CrashLogPrefix key is missing in Info.plist");
+    cachedPrefix = @"XXX";
+  }
 
-    return cachedPrefix;
+  return cachedPrefix;
 }
 
-+(BOOL) file:(NSString*)path isNewerThan:(NSDate*)date {
-    NSFileManager* fileManager = [NSFileManager defaultManager];
++ (BOOL)file:(NSString*)path isNewerThan:(NSDate*)date {
+  NSFileManager* fileManager = [NSFileManager defaultManager];
 
-    if (![fileManager fileExistsAtPath:path]) {
-        return NO;
-    }
+  if (![fileManager fileExistsAtPath:path]) {
+    return NO;
+  }
 
-    if (!date) {
-        return YES;
-    }
-
-    NSError* error = nil;
-    NSDate* fileDate = [[fileManager attributesOfItemAtPath:path error:&error] fileModificationDate];
-    if (error) {
-        NSLog(@"Error while fetching file attributes: %@", [error localizedDescription]);
-    }
-
-    if ([date compare:fileDate] == NSOrderedDescending) {
-        return NO;
-    }
-
+  if (!date) {
     return YES;
+  }
+
+  NSError* error = nil;
+  NSDate* fileDate = [[fileManager attributesOfItemAtPath:path error:&error] fileModificationDate];
+  if (error) {
+    NSLog(@"Error while fetching file attributes: %@", [error localizedDescription]);
+  }
+
+  if ([date compare:fileDate] == NSOrderedDescending) {
+    return NO;
+  }
+
+  return YES;
 }
 
-+(NSArray*)findCrashLogsIn:(NSString*)folder since:(NSDate*)date {
-    NSMutableArray* files = [NSMutableArray array];
-    NSFileManager* fileManager = [NSFileManager defaultManager];
++ (NSArray*)findCrashLogsIn:(NSString*)folder since:(NSDate*)date {
+  NSMutableArray* files = [NSMutableArray array];
+  NSFileManager* fileManager = [NSFileManager defaultManager];
 
-    NSDirectoryEnumerator* enumerator;
-    NSString* file;
+  NSDirectoryEnumerator* enumerator;
+  NSString* file;
 
-    if ([fileManager fileExistsAtPath:folder]) {
-        enumerator = [fileManager enumeratorAtPath:folder];
-        while ((file = [enumerator nextObject])) {
-            if ([file hasSuffix:@".crash"] && [file hasPrefix:[self crashLogPrefix]]) {
-                file = [[folder stringByAppendingPathComponent:file] stringByExpandingTildeInPath];
+  if ([fileManager fileExistsAtPath:folder]) {
+    enumerator = [fileManager enumeratorAtPath:folder];
+    while ((file = [enumerator nextObject])) {
+      if ([file hasSuffix:@".crash"] && [file hasPrefix:[self crashLogPrefix]]) {
+        file = [[folder stringByAppendingPathComponent:file] stringByExpandingTildeInPath];
 
-                if ([self file:file isNewerThan:date]) {
-                    [files addObject:file];
-                }
-            }
+        if ([self file:file isNewerThan:date]) {
+          [files addObject:file];
         }
+      }
     }
+  }
 
-    return files;
+  return files;
 }
 
 @end

@@ -35,62 +35,61 @@
 #include <Foundation/Foundation.h>
 
 @interface Reporter : NSObject {
-    @public
-    IBOutlet NSWindow* alertWindow_;      // The alert window
+ @public
+  IBOutlet NSWindow* alertWindow_;  // The alert window
 
-    IBOutlet NSTextField* dialogTitle_;
-    IBOutlet NSTextField* dialogNote_;
-    IBOutlet NSTextField* dialogExplanation_;
-    IBOutlet NSTextField* commentMessage_;
-    IBOutlet NSButton* sendButton_;
-    IBOutlet NSButton* cancelButton_;
-    IBOutlet NSTextField* countdownLabel_;
-    IBOutlet NSProgressIndicator* progressIndicator_;
+  IBOutlet NSTextField* dialogTitle_;
+  IBOutlet NSTextField* dialogNote_;
+  IBOutlet NSTextField* dialogExplanation_;
+  IBOutlet NSTextField* commentMessage_;
+  IBOutlet NSButton* sendButton_;
+  IBOutlet NSButton* cancelButton_;
+  IBOutlet NSTextField* countdownLabel_;
+  IBOutlet NSProgressIndicator* progressIndicator_;
 
-    // Text field bindings, for user input.
-    NSString* countdownMessage_;           // Message indicating time left for input.
-    NSString* targetApp_;                  // TotalTerminal or TotalFinder
-    @private
-    NSDictionary* parameters_;             // Key value pairs of data
-    NSTimeInterval remainingDialogTime_;   // Keeps track of how long we have until we cancel the dialog
-    NSTimer* messageTimer_;                // Timer we use to update the dialog
+  // Text field bindings, for user input.
+  NSString* countdownMessage_;  // Message indicating time left for input.
+  NSString* targetApp_;         // TotalTerminal or TotalFinder
+ @private
+  NSDictionary* parameters_;            // Key value pairs of data
+  NSTimeInterval remainingDialogTime_;  // Keeps track of how long we have until we cancel the dialog
+  NSTimer* messageTimer_;               // Timer we use to update the dialog
 }
 
 // Stops the modal panel with an NSAlertDefaultReturn value. This is the action
 // invoked by the "Send Report" button.
--(IBAction)sendReport:(id)sender;
+- (IBAction)sendReport:(id)sender;
 // Stops the modal panel with an NSAlertAlternateReturn value. This is the
 // action invoked by the "Cancel" button.
--(IBAction)cancel:(id)sender;
+- (IBAction)cancel:(id)sender;
 
--(NSString*)countdownMessage;
--(void)setCountdownMessage:(NSString*)value;
+- (NSString*)countdownMessage;
+- (void)setCountdownMessage:(NSString*)value;
 
 @end
 
 @interface Reporter (PrivateMethods)
--(id)init;
+- (id)init;
 
--(BOOL)readConfigurationData;
+- (BOOL)readConfigurationData;
 
 // Shows UI to the user to ask for permission to send and any extra information
 // we've been instructed to request. Returns YES if the user allows the report
 // to be sent.
--(BOOL)askUserPermissionToSend;
+- (BOOL)askUserPermissionToSend;
 
 // Returns the amount of time the UI should be shown before timing out.
--(NSTimeInterval)messageTimeout;
+- (NSTimeInterval)messageTimeout;
 
--(void)configureAlertWindow;
+- (void)configureAlertWindow;
 
 // Run an alert window with the given timeout. Returns
 // NSRunStoppedResponse if the timeout is exceeded. A timeout of 0
 // queues the message immediately in the modal run loop.
--(NSInteger)runModalWindow:(NSWindow*)window
-               withTimeout:(NSTimeInterval)timeout;
+- (NSInteger)runModalWindow:(NSWindow*)window withTimeout:(NSTimeInterval)timeout;
 
 // This method is used to periodically update the UI with how many
 // seconds are left in the dialog display.
--(void)updateSecondsLeftInDialogDisplay:(NSTimer*)theTimer;
+- (void)updateSecondsLeftInDialogDisplay:(NSTimer*)theTimer;
 
 @end

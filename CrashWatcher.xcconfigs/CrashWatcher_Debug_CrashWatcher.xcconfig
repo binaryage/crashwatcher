@@ -6,32 +6,3 @@
 #include "CrashWatcher_Debug_CrashWatcher_generated.xcconfig"
 
 // here you can follow with your custom settings overries if needed
-
-// GCC_WARN_ABOUT_RETURN_TYPE = YES
-// GCC_PREPROCESSOR_DEFINITIONS = PROJECT=CrashWatcher DEBUG=1
-// ONLY_ACTIVE_ARCH = YES
-// CLANG_ENABLE_MODULES = YES
-// GCC_WARN_UNINITIALIZED_AUTOS = YES
-// CLANG_CXX_LANGUAGE_STANDARD = c++0x
-// GCC_SYMBOLS_PRIVATE_EXTERN = YES
-// MACOSX_DEPLOYMENT_TARGET = 10.7
-// LLVM_LTO = NO
-// GCC_OPTIMIZATION_LEVEL = 0
-// DEBUG_INFORMATION_FORMAT = dwarf-with-dsym
-// OTHER_LDFLAGS = -undefined dynamic_lookup -headerpad_max_install_names
-// CLANG_WARN__DUPLICATE_METHOD_MATCH = YES
-// CLANG_WARN_EMPTY_BODY = YES
-// WARNING_CFLAGS = -Wthread-safety -Wthread-safety-beta
-// SDKROOT = macosx
-// CLANG_ENABLE_OBJC_ARC = YES
-// COPY_PHASE_STRIP = YES
-// CLANG_CXX_LIBRARY = libc++
-// GCC_WARN_UNUSED_VARIABLE = YES
-
-// PRODUCT_NAME = CrashWatcher
-// WRAPPER_EXTENSION = app
-// COMBINE_HIDPI_IMAGES = YES
-// GCC_PRECOMPILE_PREFIX_HEADER = YES
-// INFOPLIST_FILE = CrashWatcher-Info.plist
-// GCC_PREFIX_HEADER = CrashWatcher-Prefix.pch
-// ALWAYS_SEARCH_USER_PATHS = NO

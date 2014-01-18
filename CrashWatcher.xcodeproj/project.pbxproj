@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D601A63A139EDD580012C0C5 /* ResizabilityExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = D601A639139EDD580012C0C5 /* ResizabilityExtensions.m */; };
 		D61347A315FBA2000078B8A4 /* json.rb in Resources */ = {isa = PBXBuildFile; fileRef = D693341215B59986003832AA /* json.rb */; };
 		D61CB65613E8A835007ECF89 /* related-crash-report.rb in Resources */ = {isa = PBXBuildFile; fileRef = D6719F8013A2F5B3002FE41C /* related-crash-report.rb */; };
 		D65923AB139E2AE600E4A9D3 /* CrashWatcher.xib in Resources */ = {isa = PBXBuildFile; fileRef = D65923AA139E2AE600E4A9D3 /* CrashWatcher.xib */; };
@@ -21,8 +20,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		D601A638139EDD580012C0C5 /* ResizabilityExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResizabilityExtensions.h; sourceTree = "<group>"; };
-		D601A639139EDD580012C0C5 /* ResizabilityExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResizabilityExtensions.m; sourceTree = "<group>"; };
 		D61CB65413E8A835007ECF89 /* German */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = German; path = "../crashwatcher-resources/German.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		D61CB65513E8A835007ECF89 /* zh_TW */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh_TW; path = "../crashwatcher-resources/zh_TW.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		D63317F415C00F0F00B05623 /* Croatian */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Croatian; path = "../crashwatcher-resources/Croatian.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -53,13 +50,13 @@
 		D685C59513A3983400A23F94 /* Spanish */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Spanish; path = "../crashwatcher-resources/Spanish.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		D693341215B59986003832AA /* json.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = json.rb; path = "../crashwatcher-resources/json.rb"; sourceTree = "<group>"; };
 		D69D296013F02F7200C7A5A2 /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = "../crashwatcher-resources/fi.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		D6A1D77D186E528700AD5B79 /* Arabic */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Arabic; path = ../crashwatcher-resources/Arabic.lproj/Localizable.strings; sourceTree = "<group>"; };
-		D6A1D77E186E528700AD5B79 /* Czech */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Czech; path = ../crashwatcher-resources/Czech.lproj/Localizable.strings; sourceTree = "<group>"; };
-		D6A1D77F186E528700AD5B79 /* Estonian */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Estonian; path = ../crashwatcher-resources/Estonian.lproj/Localizable.strings; sourceTree = "<group>"; };
-		D6A1D780186E529400AD5B79 /* Greek */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Greek; path = ../crashwatcher-resources/Greek.lproj/Localizable.strings; sourceTree = "<group>"; };
-		D6A1D781186E529400AD5B79 /* Hindi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Hindi; path = ../crashwatcher-resources/Hindi.lproj/Localizable.strings; sourceTree = "<group>"; };
-		D6A1D782186E529400AD5B79 /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Japanese; path = ../crashwatcher-resources/Japanese.lproj/Localizable.strings; sourceTree = "<group>"; };
-		D6A1D783186E52A500AD5B79 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = ../crashwatcher-resources/sv.lproj/Localizable.strings; sourceTree = "<group>"; };
+		D6A1D77D186E528700AD5B79 /* Arabic */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Arabic; path = "../crashwatcher-resources/Arabic.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		D6A1D77E186E528700AD5B79 /* Czech */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Czech; path = "../crashwatcher-resources/Czech.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		D6A1D77F186E528700AD5B79 /* Estonian */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Estonian; path = "../crashwatcher-resources/Estonian.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		D6A1D780186E529400AD5B79 /* Greek */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Greek; path = "../crashwatcher-resources/Greek.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		D6A1D781186E529400AD5B79 /* Hindi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Hindi; path = "../crashwatcher-resources/Hindi.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		D6A1D782186E529400AD5B79 /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Japanese; path = "../crashwatcher-resources/Japanese.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		D6A1D783186E52A500AD5B79 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = "../crashwatcher-resources/sv.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		D6BDB63A139E1B6F00501FAA /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		D6BDB63D139E1B6F00501FAA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		D6BDB63E139E1B6F00501FAA /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -99,9 +96,8 @@
 			isa = PBXGroup;
 			children = (
 				D644210A17FA760600141925 /* Configs */,
-				D6719F7C13A2556E002FE41C /* CoreServices.framework */,
-				D6BDB66E139E1E4200501FAA /* Resources */,
 				D6BDB65D139E1C6900501FAA /* Source */,
+				D6BDB66E139E1E4200501FAA /* Resources */,
 				D6BDB640139E1B6F00501FAA /* Support */,
 				D6BDB639139E1B6F00501FAA /* Frameworks */,
 				D685C57613A36BE000A23F94 /* CrashWatcher.app */,
@@ -111,7 +107,6 @@
 		D6BDB639139E1B6F00501FAA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D6BDB63A139E1B6F00501FAA /* Cocoa.framework */,
 				D6BDB63C139E1B6F00501FAA /* Other Frameworks */,
 			);
 			name = Frameworks;
@@ -120,6 +115,8 @@
 		D6BDB63C139E1B6F00501FAA /* Other Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D6719F7C13A2556E002FE41C /* CoreServices.framework */,
+				D6BDB63A139E1B6F00501FAA /* Cocoa.framework */,
 				D6BDB63D139E1B6F00501FAA /* AppKit.framework */,
 				D6BDB63E139E1B6F00501FAA /* CoreData.framework */,
 				D6BDB63F139E1B6F00501FAA /* Foundation.framework */,
@@ -144,8 +141,6 @@
 				D6BDB65F139E1C7C00501FAA /* main.m */,
 				D6BDB663139E1C7C00501FAA /* CrashLogFinder.h */,
 				D6BDB664139E1C7C00501FAA /* CrashLogFinder.m */,
-				D601A638139EDD580012C0C5 /* ResizabilityExtensions.h */,
-				D601A639139EDD580012C0C5 /* ResizabilityExtensions.m */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -271,7 +266,6 @@
 			files = (
 				D6BDB665139E1C7C00501FAA /* main.m in Sources */,
 				D6BDB667139E1C7C00501FAA /* CrashLogFinder.m in Sources */,
-				D601A63A139EDD580012C0C5 /* ResizabilityExtensions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

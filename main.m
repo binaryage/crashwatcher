@@ -1,7 +1,6 @@
 #import "main.h"
 
 #import "CrashLogFinder.h"
-#import "ResizabilityExtensions.h"
 
 #ifdef DEBUG
 #define DLOG(...) NSLog(__VA_ARGS__)
@@ -83,10 +82,7 @@ static NSString* gTargetApp = @"UnknownApp";  // will be set to TotalTerminal, T
 
   // Localize the buttons, and keep the cancel button at the right distance.
   [sendButton_ setTitle:NSLocalizedString(@"sendReportButton", @"")];
-  CGFloat sendButtonWidthDelta = [sendButton_ breakpad_smartSizeToFit];
-  [cancelButton_ breakpad_shiftHorizontally:(-sendButtonWidthDelta)];
   [cancelButton_ setTitle:NSLocalizedString(@"cancelButton", @"")];
-  [cancelButton_ breakpad_smartSizeToFit];
 }
 
 - (NSInteger)runModalWindow:(NSWindow*)window withTimeout:(NSTimeInterval)timeout {
@@ -302,7 +298,7 @@ void mycallback(ConstFSEventStreamRef streamRef,
     DLOG(@"Dialog still open - ignoring");
     return;
   }
-  // learnt suprising info from chromium sources:
+  // discovered a suprising info from chromium sources:
   // The NSApplication-based run loop only drains the autorelease pool at each
   // UI event (NSEvent).  The autorelease pool is not drained for each
   // CFRunLoopSource target that's run.  Use a local pool for any autoreleased
@@ -423,7 +419,7 @@ int main(int argc, const char* argv[]) {
 
     NSString* watchedPath = [@WATCHED_PATH stringByStandardizingPath];
     NSArray* pathsToWatch = [NSArray arrayWithObject:watchedPath];
-    NSLog(@"Watching '%@' for recent crash reports with prefix '%@'", watchedPath, [CrashLogFinder crashLogPrefix]);
+    NSLog(@"Watching '%@' for new crash reports with prefix '%@'", watchedPath, [CrashLogFinder crashLogPrefix]);
     CFAbsoluteTime latency = 1.0;
     FSEventStreamContext context;
     memset(&context, 0, sizeof(context));

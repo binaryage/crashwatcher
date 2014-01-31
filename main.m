@@ -418,7 +418,7 @@ int main(int argc, const char* argv[]) {
     }
 
     NSString* watchedPath = [@WATCHED_PATH stringByStandardizingPath];
-    NSArray* pathsToWatch = [NSArray arrayWithObject:watchedPath];
+    NSArray* pathsToWatch = @[ watchedPath ];
     NSLog(@"Watching '%@' for new crash reports with prefix '%@'", watchedPath, [CrashLogFinder crashLogPrefix]);
     CFAbsoluteTime latency = 1.0;
     FSEventStreamContext context;

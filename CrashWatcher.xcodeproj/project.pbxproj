@@ -327,6 +327,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D644210B17FA761100141925 /* CrashWatcher_Debug_CrashWatcher.xcconfig */;
 			buildSettings = {
+				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
@@ -334,6 +335,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D644210C17FA761100141925 /* CrashWatcher_Release_CrashWatcher.xcconfig */;
 			buildSettings = {
+				SDKROOT = macosx;
 			};
 			name = Release;
 		};

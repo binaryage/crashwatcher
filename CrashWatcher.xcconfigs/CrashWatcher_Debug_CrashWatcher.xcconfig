@@ -1,4 +1,4 @@
-//!bagen generate binaryage CrashWatcher Debug CrashWatcher > CrashWatcher_Debug_CrashWatcher_generated.xcconfig
+//!bagen generate binaryage CrashWatcher Debug CrashWatcher
 //
 // this file should be set as Debug configuration for target CrashWatcher in CrashWatcher.xcodeproj
 

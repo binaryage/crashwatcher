@@ -1,4 +1,4 @@
-//!bagen generate binaryage CrashWatcher Release CrashWatcher > CrashWatcher_Release_CrashWatcher_generated.xcconfig
+//!bagen generate binaryage CrashWatcher Release CrashWatcher
 //
 // this file should be set as Release configuration for target CrashWatcher in CrashWatcher.xcodeproj
 

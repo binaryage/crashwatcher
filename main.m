@@ -217,26 +217,6 @@ static NSString* gTargetApp = @"UnknownApp";  // will be set to TotalTerminal, T
   return [task terminationStatus];
 }
 
-- (NSString*)readTargetAppVersion {
-  // CrashWatcher bundle should be located in Resources folder of the target app
-  // /Library/ScriptingAdditions/TotalTerminal.osax/Contents/Resources/TotalTerminal.bundle/Contents/Resources/TotalTerminalCrashWatcher.app
-  // so going for
-  // /Library/ScriptingAdditions/TotalTerminal.osax/Contents/Resources/TotalTerminal.bundle/Contents/Info.plist
-  // should be safe
-
-  NSString* bundlePath = [[NSBundle bundleForClass:[self class]] bundlePath];
-  NSDictionary* dict = [[NSDictionary alloc] initWithContentsOfFile:[NSString stringWithFormat:@"%@/../../Info.plist", bundlePath]];
-
-  if (!dict)
-    return @"???";
-
-  id o = dict[@"CFBundleVersion"];
-  if (!o)
-    return @"?";
-
-  return o;
-}
-
 - (void)report:(NSString*)lastCrash {
   NSString* gistUrl = @"";
   NSString* extraInfo = @"";
@@ -265,9 +245,8 @@ static NSString* gTargetApp = @"UnknownApp";  // will be set to TotalTerminal, T
     [alert runModal];
     return;
   }
-  NSString* version = [self readTargetAppVersion];
   NSString* email = @"crash-reports@binaryage.com";
-  NSString* subjectString = [NSString stringWithFormat:@"%@ %@ crash %@", gTargetApp, version, extraInfo];
+  NSString* subjectString = [NSString stringWithFormat:@"%@", extraInfo];
   NSString* emailBody = [NSString stringWithFormat:NSLocalizedString(@"emailTemplate", @""), gTargetApp, gistUrl];
 
   NSString* mailto = [NSString stringWithFormat:@"mailto:%@?SUBJECT=%@&BODY=%@", email, subjectString, emailBody];

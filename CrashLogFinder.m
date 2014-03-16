@@ -42,9 +42,10 @@
   }
 
   NSError* error = nil;
-  NSDate* fileDate = [[fileManager attributesOfItemAtPath:path error:&error] fileModificationDate];
+  NSDate* fileDate = [[fileManager attributesOfItemAtPath:path error:&error] fileCreationDate];
   if (error) {
     NSLog(@"Error while fetching file attributes: %@", [error localizedDescription]);
+    return NO;
   }
 
   if ([date compare:fileDate] == NSOrderedDescending) {

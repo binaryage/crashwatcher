@@ -48,6 +48,11 @@
     return NO;
   }
 
+  if (!fileDate) {
+    NSLog(@"Error while fetching fileCreationDate: nil returned");
+    return NO;
+  }
+
   if ([date compare:fileDate] == NSOrderedDescending) {
     return NO;
   }

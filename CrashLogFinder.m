@@ -31,14 +31,14 @@
 }
 
 + (BOOL)file:(NSString*)path isNewerThan:(NSDate*)date {
+  if (!date) {
+    return NO;
+  }
+    
   NSFileManager* fileManager = [NSFileManager defaultManager];
 
   if (![fileManager fileExistsAtPath:path]) {
     return NO;
-  }
-
-  if (!date) {
-    return YES;
   }
 
   NSError* error = nil;

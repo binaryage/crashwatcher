@@ -102,7 +102,9 @@
 				D6BDB639139E1B6F00501FAA /* Frameworks */,
 				D685C57613A36BE000A23F94 /* CrashWatcher.app */,
 			);
+			indentWidth = 2;
 			sourceTree = "<group>";
+			tabWidth = 2;
 		};
 		D6BDB639139E1B6F00501FAA /* Frameworks */ = {
 			isa = PBXGroup;

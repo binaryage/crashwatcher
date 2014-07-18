@@ -47,10 +47,14 @@ static NSString* gTargetApp = @"UnknownApp";  // will be set to TotalTerminal, T
   NSInteger buttonPressed = NSAlertAlternateReturn;
 
   // Determine whether we should create a text box for user feedback.
-  BOOL didLoadNib = [NSBundle loadNibNamed:@"CrashWatcher" owner:self];
-  if (!didLoadNib) {
+  static NSArray* holdNibObjects;
+  NSArray* nibObjects;
+  BOOL nibOk = [[NSBundle bundleForClass:[self class]] loadNibNamed:@"CrashWatcher" owner:self topLevelObjects:&nibObjects];
+  if (!nibOk) {
+    NSLog(@"unexpected error: loadNibNamed failed to load %@", @"CrashWatcher");
     return NO;
   }
+  holdNibObjects = nibObjects;
 
   [self configureAlertWindow];
 

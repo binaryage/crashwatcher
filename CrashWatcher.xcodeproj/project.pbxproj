@@ -187,7 +187,7 @@
 		D6BDB62D139E1B6F00501FAA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0600;
+				LastUpgradeCheck = 0610;
 			};
 			buildConfigurationList = D6BDB630139E1B6F00501FAA /* Build configuration list for PBXProject "CrashWatcher" */;
 			compatibilityVersion = "Xcode 3.2";

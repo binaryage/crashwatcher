@@ -408,8 +408,8 @@ int main(int argc, const char* argv[]) {
     memset(&context, 0, sizeof(context));
     context.info = (void*)CFBridgingRetain(reporter);  // keep reporter alive forever
 
-    FSEventStreamRef stream = FSEventStreamCreate(
-        NULL, &mycallback, &context, (__bridge CFArrayRef)pathsToWatch, kFSEventStreamEventIdSinceNow, latency, kFSEventStreamCreateFlagNone);
+    FSEventStreamRef stream = FSEventStreamCreate(NULL, &mycallback, &context, (__bridge CFArrayRef)pathsToWatch, kFSEventStreamEventIdSinceNow, latency,
+                                                  kFSEventStreamCreateFlagNone);
 
     FSEventStreamScheduleWithRunLoop(stream, CFRunLoopGetCurrent(), kCFRunLoopDefaultMode);
     FSEventStreamStart(stream);

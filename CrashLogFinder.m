@@ -34,7 +34,7 @@
   if (!date) {
     return NO;
   }
-    
+
   NSFileManager* fileManager = [NSFileManager defaultManager];
 
   if (![fileManager fileExistsAtPath:path]) {

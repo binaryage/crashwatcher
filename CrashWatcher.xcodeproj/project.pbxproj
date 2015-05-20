@@ -341,6 +341,20 @@
 			};
 			name = Release;
 		};
+		D6D55B6B1B0C3D3D00227B08 /* ReleaseLogging */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = ReleaseLogging;
+		};
+		D6D55B6C1B0C3D3D00227B08 /* ReleaseLogging */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D644210C17FA761100141925 /* CrashWatcher_Release_CrashWatcher.xcconfig */;
+			buildSettings = {
+				SDKROOT = macosx;
+			};
+			name = ReleaseLogging;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -349,6 +363,7 @@
 			buildConfigurations = (
 				D6BDB652139E1B6F00501FAA /* Debug */,
 				D6BDB653139E1B6F00501FAA /* Release */,
+				D6D55B6B1B0C3D3D00227B08 /* ReleaseLogging */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -358,6 +373,7 @@
 			buildConfigurations = (
 				D6BDB655139E1B6F00501FAA /* Debug */,
 				D6BDB656139E1B6F00501FAA /* Release */,
+				D6D55B6C1B0C3D3D00227B08 /* ReleaseLogging */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

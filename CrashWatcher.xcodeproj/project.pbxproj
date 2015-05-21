@@ -17,7 +17,6 @@
 		D6BDB667139E1C7C00501FAA /* CrashLogFinder.m in Sources */ = {isa = PBXBuildFile; fileRef = D6BDB664139E1C7C00501FAA /* CrashLogFinder.m */; };
 		D6BDB6B1139E1E7100501FAA /* CrashWatcher.icns in Resources */ = {isa = PBXBuildFile; fileRef = D6BDB670139E1E7100501FAA /* CrashWatcher.icns */; };
 		D6BDB6CC139E1E7100501FAA /* upload-gist.rb in Resources */ = {isa = PBXBuildFile; fileRef = D6BDB6AF139E1E7100501FAA /* upload-gist.rb */; };
-		D6D55BB11B0C4D5600227B08 /* CrashWatcher_ReleaseLogging_CrashWatcher.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = D6D55BB01B0C4D5600227B08 /* CrashWatcher_ReleaseLogging_CrashWatcher.xcconfig */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -256,7 +255,6 @@
 				D6774F9213A313C900CA6F7A /* Localizable.strings in Resources */,
 				D6BDB6B1139E1E7100501FAA /* CrashWatcher.icns in Resources */,
 				D6BDB6CC139E1E7100501FAA /* upload-gist.rb in Resources */,
-				D6D55BB11B0C4D5600227B08 /* CrashWatcher_ReleaseLogging_CrashWatcher.xcconfig in Resources */,
 				D666901613E8B16100A9FE74 /* extract-crash-info.rb in Resources */,
 				D61CB65613E8A835007ECF89 /* related-crash-report.rb in Resources */,
 				D65923AB139E2AE600E4A9D3 /* CrashWatcher.xib in Resources */,

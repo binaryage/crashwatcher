@@ -189,7 +189,7 @@
 		D6BDB62D139E1B6F00501FAA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0630;
+				LastUpgradeCheck = 0700;
 			};
 			buildConfigurationList = D6BDB630139E1B6F00501FAA /* Build configuration list for PBXProject "CrashWatcher" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -318,6 +318,8 @@
 		D6BDB652139E1B6F00501FAA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				ONLY_ACTIVE_ARCH = YES;
 			};
 			name = Debug;
 		};
@@ -331,6 +333,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D644210B17FA761100141925 /* CrashWatcher_Debug_CrashWatcher.xcconfig */;
 			buildSettings = {
+				PRODUCT_BUNDLE_IDENTIFIER = com.binaryage.crashwatcher;
 				SDKROOT = macosx;
 			};
 			name = Debug;
@@ -339,6 +342,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D644210C17FA761100141925 /* CrashWatcher_Release_CrashWatcher.xcconfig */;
 			buildSettings = {
+				PRODUCT_BUNDLE_IDENTIFIER = com.binaryage.crashwatcher;
 				SDKROOT = macosx;
 			};
 			name = Release;
@@ -353,6 +357,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D6D55BB01B0C4D5600227B08 /* CrashWatcher_ReleaseLogging_CrashWatcher.xcconfig */;
 			buildSettings = {
+				PRODUCT_BUNDLE_IDENTIFIER = com.binaryage.crashwatcher;
 				SDKROOT = macosx;
 			};
 			name = ReleaseLogging;

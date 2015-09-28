@@ -60,7 +60,7 @@ OTHER_CODE_SIGN_FLAGS = --timestamp=none
 //
 // Base configuration for all TotalFinder projects
 //
-MACOSX_DEPLOYMENT_TARGET = 10.8
+MACOSX_DEPLOYMENT_TARGET = 10.9
 SDKROOT = macosx
 CLANG_CXX_LIBRARY = libc++
 CLANG_CXX_LANGUAGE_STANDARD = c++0x

@@ -22,7 +22,7 @@
 /* Begin PBXFileReference section */
 		D61CB65413E8A835007ECF89 /* German */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = German; path = "../crashwatcher-resources/de.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		D61CB65513E8A835007ECF89 /* zh_TW */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh_TW; path = "../crashwatcher-resources/zh_TW.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		D63317F415C00F0F00B05623 /* Croatian */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Croatian; path = "../crashwatcher-resources/hv.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		D63317F415C00F0F00B05623 /* Croatian */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Croatian; path = "../crashwatcher-resources/hr.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		D63317F715C00F2000B05623 /* Dutch */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Dutch; path = "../crashwatcher-resources/nl.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		D63317F815C00F2000B05623 /* French */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = French; path = "../crashwatcher-resources/fr.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		D63317F915C00F2000B05623 /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = "../crashwatcher-resources/hu.lproj/Localizable.strings"; sourceTree = "<group>"; };

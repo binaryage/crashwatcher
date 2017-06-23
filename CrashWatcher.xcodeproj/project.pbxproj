@@ -38,7 +38,7 @@
 		D644210B17FA761100141925 /* CrashWatcher_Debug_CrashWatcher.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = CrashWatcher_Debug_CrashWatcher.xcconfig; path = CrashWatcher.xcconfigs/CrashWatcher_Debug_CrashWatcher.xcconfig; sourceTree = "<group>"; };
 		D644210C17FA761100141925 /* CrashWatcher_Release_CrashWatcher.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = CrashWatcher_Release_CrashWatcher.xcconfig; path = CrashWatcher.xcconfigs/CrashWatcher_Release_CrashWatcher.xcconfig; sourceTree = "<group>"; };
 		D65923A7139E2A1400E4A9D3 /* CrashWatcher-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "CrashWatcher-Info.plist"; sourceTree = SOURCE_ROOT; };
-		D65923A8139E2A1400E4A9D3 /* CrashWatcher-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CrashWatcher-Prefix.pch"; sourceTree = SOURCE_ROOT; };
+		D65923A8139E2A1400E4A9D3 /* CrashWatcher.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CrashWatcher.pch; sourceTree = SOURCE_ROOT; };
 		D65923AA139E2AE600E4A9D3 /* CrashWatcher.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CrashWatcher.xib; path = "../crashwatcher-resources/CrashWatcher.xib"; sourceTree = "<group>"; };
 		D66BF26E15FBA06700274E15 /* Vietnamese */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Vietnamese; path = "../crashwatcher-resources/vi.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		D66BF26F15FBA06700274E15 /* Polish */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Polish; path = "../crashwatcher-resources/pl.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -132,7 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				D65923A7139E2A1400E4A9D3 /* CrashWatcher-Info.plist */,
-				D65923A8139E2A1400E4A9D3 /* CrashWatcher-Prefix.pch */,
+				D65923A8139E2A1400E4A9D3 /* CrashWatcher.pch */,
 			);
 			name = Support;
 			path = CrashWatcher;

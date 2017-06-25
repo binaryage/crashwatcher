@@ -20,43 +20,43 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		D61CB65413E8A835007ECF89 /* German */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = German; path = "../crashwatcher-resources/de.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		D61CB65513E8A835007ECF89 /* zh_TW */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh_TW; path = "../crashwatcher-resources/zh_TW.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		D63317F415C00F0F00B05623 /* Croatian */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Croatian; path = "../crashwatcher-resources/hr.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		D63317F715C00F2000B05623 /* Dutch */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Dutch; path = "../crashwatcher-resources/nl.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		D63317F815C00F2000B05623 /* French */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = French; path = "../crashwatcher-resources/fr.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		D63317F915C00F2000B05623 /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = "../crashwatcher-resources/hu.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		D63317FD15C00F3100B05623 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = "../crashwatcher-resources/ko.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		D63317FE15C00F3100B05623 /* mn */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mn; path = "../crashwatcher-resources/mn.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		D63317FF15C00F3100B05623 /* no */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = no; path = "../crashwatcher-resources/no.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		D633180015C00F3100B05623 /* Portuguese */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Portuguese; path = "../crashwatcher-resources/pt.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		D633180115C00F3100B05623 /* pt_PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt_PT; path = "../crashwatcher-resources/pt_PT.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		D633180715C00F3E00B05623 /* Romanian */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Romanian; path = "../crashwatcher-resources/ro.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		D633180815C00F3F00B05623 /* Russian */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Russian; path = "../crashwatcher-resources/ru.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		D633180915C00F3F00B05623 /* Turkish */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Turkish; path = "../crashwatcher-resources/tr.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		D633180A15C00F3F00B05623 /* Ukrainian */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Ukrainian; path = "../crashwatcher-resources/uk.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		D61CB65413E8A835007ECF89 /* German */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = German; path = "de.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		D61CB65513E8A835007ECF89 /* zh_TW */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh_TW; path = "zh_TW.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		D63317F415C00F0F00B05623 /* Croatian */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Croatian; path = "hr.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		D63317F715C00F2000B05623 /* Dutch */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Dutch; path = "nl.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		D63317F815C00F2000B05623 /* French */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = French; path = "fr.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		D63317F915C00F2000B05623 /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = "hu.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		D63317FD15C00F3100B05623 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = "ko.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		D63317FE15C00F3100B05623 /* mn */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mn; path = "mn.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		D63317FF15C00F3100B05623 /* no */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = no; path = "no.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		D633180015C00F3100B05623 /* Portuguese */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Portuguese; path = "pt.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		D633180115C00F3100B05623 /* pt_PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt_PT; path = "pt_PT.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		D633180715C00F3E00B05623 /* Romanian */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Romanian; path = "ro.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		D633180815C00F3F00B05623 /* Russian */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Russian; path = "ru.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		D633180915C00F3F00B05623 /* Turkish */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Turkish; path = "tr.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		D633180A15C00F3F00B05623 /* Ukrainian */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Ukrainian; path = "uk.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		D644210B17FA761100141925 /* CrashWatcher_Debug_CrashWatcher.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = CrashWatcher_Debug_CrashWatcher.xcconfig; path = CrashWatcher.xcconfigs/CrashWatcher_Debug_CrashWatcher.xcconfig; sourceTree = "<group>"; };
 		D644210C17FA761100141925 /* CrashWatcher_Release_CrashWatcher.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = CrashWatcher_Release_CrashWatcher.xcconfig; path = CrashWatcher.xcconfigs/CrashWatcher_Release_CrashWatcher.xcconfig; sourceTree = "<group>"; };
-		D65923A7139E2A1400E4A9D3 /* CrashWatcher-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "CrashWatcher-Info.plist"; sourceTree = SOURCE_ROOT; };
+		D65923A7139E2A1400E4A9D3 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = SOURCE_ROOT; };
 		D65923A8139E2A1400E4A9D3 /* CrashWatcher.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CrashWatcher.pch; sourceTree = SOURCE_ROOT; };
-		D65923AA139E2AE600E4A9D3 /* CrashWatcher.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CrashWatcher.xib; path = "../crashwatcher-resources/CrashWatcher.xib"; sourceTree = "<group>"; };
-		D66BF26E15FBA06700274E15 /* Vietnamese */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Vietnamese; path = "../crashwatcher-resources/vi.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		D66BF26F15FBA06700274E15 /* Polish */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Polish; path = "../crashwatcher-resources/pl.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		D65923AA139E2AE600E4A9D3 /* CrashWatcher.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CrashWatcher.xib; sourceTree = "<group>"; };
+		D66BF26E15FBA06700274E15 /* Vietnamese */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Vietnamese; path = "vi.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		D66BF26F15FBA06700274E15 /* Polish */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Polish; path = "pl.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		D6719F7C13A2556E002FE41C /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
-		D6719F8013A2F5B3002FE41C /* related-crash-report.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = "related-crash-report.rb"; path = "../crashwatcher-resources/related-crash-report.rb"; sourceTree = "<group>"; };
-		D6774F8F13A313C900CA6F7A /* English */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = English; path = "../crashwatcher-resources/en.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		D685C57613A36BE000A23F94 /* CrashWatcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CrashWatcher.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		D685C59413A3983400A23F94 /* Italian */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Italian; path = "../crashwatcher-resources/it.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		D685C59513A3983400A23F94 /* Spanish */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Spanish; path = "../crashwatcher-resources/es.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		D693341215B59986003832AA /* json.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = json.rb; path = "../crashwatcher-resources/json.rb"; sourceTree = "<group>"; };
-		D69D296013F02F7200C7A5A2 /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = "../crashwatcher-resources/fi.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		D6A1D77D186E528700AD5B79 /* Arabic */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Arabic; path = "../crashwatcher-resources/ar.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		D6A1D77E186E528700AD5B79 /* Czech */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Czech; path = "../crashwatcher-resources/cs.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		D6A1D77F186E528700AD5B79 /* Estonian */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Estonian; path = "../crashwatcher-resources/et.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		D6A1D780186E529400AD5B79 /* Greek */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Greek; path = "../crashwatcher-resources/el.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		D6A1D781186E529400AD5B79 /* Hindi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Hindi; path = "../crashwatcher-resources/hi.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		D6A1D782186E529400AD5B79 /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Japanese; path = "../crashwatcher-resources/ja.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		D6A1D783186E52A500AD5B79 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = "../crashwatcher-resources/sv.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		D6719F8013A2F5B3002FE41C /* related-crash-report.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = "related-crash-report.rb"; sourceTree = "<group>"; };
+		D6774F8F13A313C900CA6F7A /* English */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = English; path = "en.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		D685C59413A3983400A23F94 /* Italian */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Italian; path = "it.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		D685C59513A3983400A23F94 /* Spanish */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Spanish; path = "es.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		D693341215B59986003832AA /* json.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = json.rb; sourceTree = "<group>"; };
+		D69D296013F02F7200C7A5A2 /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = "fi.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		D6A03A851F0045DD00688416 /* CrashWatcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CrashWatcher.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D6A1D77D186E528700AD5B79 /* Arabic */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Arabic; path = "ar.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		D6A1D77E186E528700AD5B79 /* Czech */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Czech; path = "cs.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		D6A1D77F186E528700AD5B79 /* Estonian */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Estonian; path = "et.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		D6A1D780186E529400AD5B79 /* Greek */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Greek; path = "el.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		D6A1D781186E529400AD5B79 /* Hindi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Hindi; path = "hi.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		D6A1D782186E529400AD5B79 /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Japanese; path = "ja.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		D6A1D783186E52A500AD5B79 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = "sv.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		D6BDB63A139E1B6F00501FAA /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		D6BDB63D139E1B6F00501FAA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		D6BDB63E139E1B6F00501FAA /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -65,11 +65,11 @@
 		D6BDB65F139E1C7C00501FAA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D6BDB663139E1C7C00501FAA /* CrashLogFinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CrashLogFinder.h; sourceTree = "<group>"; };
 		D6BDB664139E1C7C00501FAA /* CrashLogFinder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CrashLogFinder.m; sourceTree = "<group>"; };
-		D6BDB670139E1E7100501FAA /* CrashWatcher.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = CrashWatcher.icns; path = "../crashwatcher-resources/CrashWatcher.icns"; sourceTree = "<group>"; };
-		D6BDB685139E1E7100501FAA /* extract-crash-info.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = "extract-crash-info.rb"; path = "../crashwatcher-resources/extract-crash-info.rb"; sourceTree = "<group>"; };
-		D6BDB6AF139E1E7100501FAA /* upload-gist.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = "upload-gist.rb"; path = "../crashwatcher-resources/upload-gist.rb"; sourceTree = "<group>"; };
+		D6BDB670139E1E7100501FAA /* CrashWatcher.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = CrashWatcher.icns; sourceTree = "<group>"; };
+		D6BDB685139E1E7100501FAA /* extract-crash-info.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = "extract-crash-info.rb"; sourceTree = "<group>"; };
+		D6BDB6AF139E1E7100501FAA /* upload-gist.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = "upload-gist.rb"; sourceTree = "<group>"; };
 		D6D55BB01B0C4D5600227B08 /* CrashWatcher_ReleaseLogging_CrashWatcher.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = CrashWatcher_ReleaseLogging_CrashWatcher.xcconfig; path = CrashWatcher.xcconfigs/CrashWatcher_ReleaseLogging_CrashWatcher.xcconfig; sourceTree = "<group>"; };
-		D6F1A95B13E8A4AA00A1752A /* zh_CN */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh_CN; path = "../crashwatcher-resources/zh_CN.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		D6F1A95B13E8A4AA00A1752A /* zh_CN */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh_CN; path = "zh_CN.lproj/Localizable.strings"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,9 +100,10 @@
 				D644210A17FA760600141925 /* Configs */,
 				D6BDB65D139E1C6900501FAA /* Source */,
 				D6BDB66E139E1E4200501FAA /* Resources */,
-				D6BDB640139E1B6F00501FAA /* Support */,
 				D6BDB639139E1B6F00501FAA /* Frameworks */,
-				D685C57613A36BE000A23F94 /* CrashWatcher.app */,
+				D65923A8139E2A1400E4A9D3 /* CrashWatcher.pch */,
+				D65923A7139E2A1400E4A9D3 /* Info.plist */,
+				D6A03A851F0045DD00688416 /* CrashWatcher.app */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -128,16 +129,6 @@
 			name = "Other Frameworks";
 			sourceTree = "<group>";
 		};
-		D6BDB640139E1B6F00501FAA /* Support */ = {
-			isa = PBXGroup;
-			children = (
-				D65923A7139E2A1400E4A9D3 /* CrashWatcher-Info.plist */,
-				D65923A8139E2A1400E4A9D3 /* CrashWatcher.pch */,
-			);
-			name = Support;
-			path = CrashWatcher;
-			sourceTree = "<group>";
-		};
 		D6BDB65D139E1C6900501FAA /* Source */ = {
 			isa = PBXGroup;
 			children = (
@@ -161,6 +152,7 @@
 				D6BDB6AF139E1E7100501FAA /* upload-gist.rb */,
 			);
 			name = Resources;
+			path = ../crashwatcher-resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -180,7 +172,7 @@
 			);
 			name = CrashWatcher;
 			productName = CrashWatcher;
-			productReference = D685C57613A36BE000A23F94 /* CrashWatcher.app */;
+			productReference = D6A03A851F0045DD00688416 /* CrashWatcher.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */

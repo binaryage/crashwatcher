@@ -325,7 +325,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D644210B17FA761100141925 /* CrashWatcher_Debug_CrashWatcher.xcconfig */;
 			buildSettings = {
-				PRODUCT_BUNDLE_IDENTIFIER = com.binaryage.crashwatcher;
 			};
 			name = Debug;
 		};
@@ -333,7 +332,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D644210C17FA761100141925 /* CrashWatcher_Release_CrashWatcher.xcconfig */;
 			buildSettings = {
-				PRODUCT_BUNDLE_IDENTIFIER = com.binaryage.crashwatcher;
 			};
 			name = Release;
 		};
@@ -347,7 +345,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D6D55BB01B0C4D5600227B08 /* CrashWatcher_ReleaseLogging_CrashWatcher.xcconfig */;
 			buildSettings = {
-				PRODUCT_BUNDLE_IDENTIFIER = com.binaryage.crashwatcher;
 			};
 			name = ReleaseLogging;
 		};

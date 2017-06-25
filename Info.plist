@@ -11,7 +11,7 @@
 	<key>CFBundleIconFile</key>
 	<string>CrashWatcher</string>
 	<key>CFBundleIdentifier</key>
-	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<string>com.binaryage.crashwatcher</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
